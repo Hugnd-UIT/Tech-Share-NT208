@@ -1,0 +1,93 @@
+<div class="bg-light-subtle py-5" style="min-height: 100vh;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-10">
+                <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                    <div class="row g-0">
+                        
+                        <div class="col-lg-5 bg-primary text-white p-5 d-flex flex-column justify-content-center">
+                            
+                            <h3 class="fw-bold mb-2 text-white">Liên hệ với chúng tôi</h3>
+                            <p class="text-white-50 mb-4">Gửi thắc mắc hoặc đóng góp tài liệu giúp cộng đồng UIT lớn mạnh hơn.</p>
+                            
+                            <div class="d-flex align-items-center mb-4">
+                                <div class="bg-white bg-opacity-10 rounded-circle p-3 me-3">
+                                    <i class="bi bi-geo-alt-fill fs-5 text-white"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-0 text-white">Địa chỉ</h6>
+                                    <small class="text-white-50">Trường ĐH CNTT - ĐHQG TP.HCM</small>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-center mb-4">
+                                <div class="bg-white bg-opacity-10 rounded-circle p-3 me-3">
+                                    <i class="bi bi-envelope-fill fs-5 text-white"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-0 text-white">Email</h6>
+                                    <small class="text-white-50">contact@techshare.uit.edu.vn</small>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-center">
+                                <div class="bg-white bg-opacity-10 rounded-circle p-3 me-3">
+                                    <i class="bi bi-github fs-5 text-white"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-0 text-white">GitHub</h6>
+                                    <small class="text-white-50">github.com/hungnguyen</small>
+                                </div>
+                            </div>
+
+                            <div class="mt-5 border-top border-white border-opacity-10 pt-4">
+                                <p class="small mb-2 text-white-50">Mạng xã hội:</p>
+                                <div class="d-flex gap-3">
+                                    <a href="#" class="btn btn-sm btn-light-primary rounded-circle"><i class="bi bi-facebook"></i></a>
+                                    <a href="#" class="btn btn-sm btn-light-primary rounded-circle"><i class="bi bi-messenger"></i></a>
+                                    <a href="#" class="btn btn-sm btn-light-primary rounded-circle"><i class="bi bi-discord"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-7 bg-white p-5">
+                            <h4 class="fw-bold text-dark mb-4">Gửi tin nhắn</h4>
+                            
+                            <form>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label small fw-bold text-secondary">Họ và tên</label>
+                                        <input type="text" class="form-control bg-light border-0 py-2" placeholder="Nhập tên của bạn">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label small fw-bold text-secondary">Email</label>
+                                        <input type="email" class="form-control bg-light border-0 py-2" placeholder="email@example.com">
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label small fw-bold text-secondary">Chủ đề</label>
+                                        <select class="form-select bg-light border-0 py-2">
+                                            <option selected>Chọn vấn đề...</option>
+                                            <option value="1">Đóng góp tài liệu</option>
+                                            <option value="2">Báo lỗi website</option>
+                                            <option value="3">Hỗ trợ tài khoản VIP</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label small fw-bold text-secondary">Nội dung</label>
+                                        <textarea class="form-control bg-light border-0" rows="5" placeholder="Bạn cần hỗ trợ gì?"></textarea>
+                                    </div>
+                                    <div class="col-12 mt-4">
+                                        <button type="submit" class="btn btn-primary rounded-pill px-4 py-2 fw-bold shadow-sm">
+                                            <i class="bi bi-send-fill me-2"></i> Gửi ngay
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,35 +1,91 @@
 <?php
     session_start();
     require_once 'backend/configure/database.php';
+    
     $page = isset($_GET['page']) ? $_GET['page'] : 'home';
 
-    include 'frontend/components/header.php';
-    
-    switch ($page) {
-        case 'home':
-            include 'frontend/pages/home.php';
-            break;
-            
-        case 'login':
-            include 'frontend/pages/login.php'; // Trang Đăng nhập
-            break;
-
-        case 'register':
-            include 'frontend/pages/register.php'; // Trang Đăng ký
-            break;
-            
-        case 'contact':
-            include 'frontend/pages/contact.php'; // Trang Liên hệ
-            break;
-
-        case 'payment':
-            include 'frontend/pages/payment.php'; // Trang Thanh toán 
-            break;
-            
-        default:
-            echo "<div class='container py-5 text-center'><h1 class='text-danger'>404 - Lạc trôi rồi bro!</h1></div>";
-            break;
-    }
-
-    include 'frontend/components/footer.php';
+    // Danh sách các trang KHÔNG cần Header và Footer (Full màn hình)
+    $auth_pages = ['login', 'register', 'reset'];
+    $is_auth_page = in_array($page, $auth_pages);
 ?>
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TechShare - Study Hub</title>
+    
+    <link rel="shortcut icon" type="image/x-icon" href="frontend/assets/image/logo.ico">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" type="text/css" href="frontend/assets/css/vendors.min.css">
+    <link rel="stylesheet" type="text/css" href="frontend/assets/css/theme.min.css">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9fa; }
+        /* Nếu không phải trang auth thì đẩy nội dung xuống để tránh Header che */
+        <?php if (!$is_auth_page): ?>
+            main { padding-top: 80px; min-height: 80vh; }
+        <?php endif; ?>
+    </style>
+</head>
+
+<body>
+
+    <?php if (!$is_auth_page) include 'frontend/components/header.php'; ?>
+
+    <?php
+        switch ($page) {
+            case 'home':
+                echo '<main>'; 
+                include 'frontend/pages/home.php';
+                echo '</main>';
+                break;
+                
+            case 'login':
+                include 'frontend/pages/login.php'; 
+                break;
+
+            case 'register':
+                include 'frontend/pages/register.php'; 
+                break;
+                
+            case 'reset':
+                include 'frontend/pages/reset.php'; 
+                break;
+
+            case 'contact':
+                echo '<main>';
+                include 'frontend/pages/contact.php';
+                echo '</main>';
+                break;
+
+            case 'payment':
+                echo '<main>';
+                include 'frontend/pages/payment.php';
+                echo '</main>';
+                break;
+            
+            case 'course':
+                echo '<main>';
+                include 'frontend/pages/course.php';
+                echo '</main>';
+                break;
+
+            default:
+                echo "<div class='container py-5 text-center mt-5'><h1 class='text-danger'>404 - Not Found</h1></div>";
+                break;
+        }
+    ?>
+
+    <?php if (!$is_auth_page) include 'frontend/components/footer.php'; ?>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="frontend/assets/javascript/vendors.min.js"></script>
+    <script src="frontend/assets/javascript/common-init.min.js"></script>
+</body>
+</html>

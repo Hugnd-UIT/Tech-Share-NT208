@@ -1,0 +1,106 @@
+<div class="container py-5" style="margin-top: 20px;">
+    
+    <div class="text-center mb-5">
+        <span class="badge bg-warning text-dark px-3 py-2 rounded-pill fw-bold mb-3">PREMIUM ACCESS</span>
+        <h2 class="fw-bold display-5 text-dark">Upgrade to <span class="text-primary">VIP Member</span></h2>
+        <p class="text-muted lead">Unlock unlimited downloads and exclusive course materials.</p>
+    </div>
+
+    <div class="row g-5 justify-content-center">
+        
+        <div class="col-lg-5">
+            <div class="card border-0 shadow-sm h-100" style="border-radius: 20px;">
+                <div class="card-body p-5">
+                    <h5 class="text-uppercase text-muted fw-bold mb-4" style="letter-spacing: 1px;">VIP Plan</h5>
+                    
+                    <div class="d-flex align-items-baseline mb-4">
+                        <h1 class="fw-bold text-dark mb-0">50,000</h1>
+                        <span class="text-muted ms-2 fs-5">VND / Month</span>
+                    </div>
+
+                    <ul class="list-unstyled mb-5 d-grid gap-3">
+                        <li class="d-flex align-items-center text-dark">
+                            <i class="bi bi-check-circle-fill text-primary me-3 fs-5"></i>
+                            <span>Unlimited Document Downloads</span>
+                        </li>
+                        <li class="d-flex align-items-center text-dark">
+                            <i class="bi bi-check-circle-fill text-primary me-3 fs-5"></i>
+                            <span>Access to Source Code</span>
+                        </li>
+                        <li class="d-flex align-items-center text-dark">
+                            <i class="bi bi-check-circle-fill text-primary me-3 fs-5"></i>
+                            <span>No Advertisements</span>
+                        </li>
+                        <li class="d-flex align-items-center text-dark">
+                            <i class="bi bi-check-circle-fill text-primary me-3 fs-5"></i>
+                            <span>Priority 24/7 Support</span>
+                        </li>
+                    </ul>
+
+                    <div class="alert alert-light border border-warning d-flex align-items-center" role="alert">
+                        <i class="bi bi-info-circle-fill text-warning me-2"></i>
+                        <small class="text-muted">Plan auto-renews. Cancel anytime.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-lg" style="border-radius: 20px; overflow: hidden;">
+                <div class="card-header bg-primary text-white p-4 text-center">
+                    <h5 class="mb-0 fw-bold"><i class="bi bi-qr-code-scan me-2"></i> Quick Payment via QR</h5>
+                </div>
+                
+                <div class="card-body p-5 text-center bg-white">
+                    <p class="text-muted mb-4">Open your banking app and scan the code below.</p>
+                    
+                    <div class="border rounded-4 p-3 d-inline-block mb-4 bg-light">
+                        <img src="https://img.vietqr.io/image/MB-0358607106-compact2.png?amount=50000&addInfo=VIP%20UPGRADE&accountName=TECHSHARE" 
+                             alt="QR Code" class="img-fluid rounded-3" style="width: 250px;">
+                    </div>
+
+                    <div class="text-start bg-light p-4 rounded-3 mb-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-muted small">Bank Name:</span>
+                            <span class="fw-bold text-dark">MB Bank</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-muted small">Account No:</span>
+                            <div class="d-flex align-items-center">
+                                <span class="fw-bold text-primary me-2" id="accNum">0358607106</span>
+                                <i class="bi bi-copy text-muted cursor-pointer" onclick="copyText('accNum')" style="cursor: pointer;" title="Copy"></i>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-muted small">Account Name:</span>
+                            <span class="fw-bold text-dark text-uppercase">NGUYEN VAN A</span>
+                        </div>
+                        <hr class="border-secondary opacity-10">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="text-muted small">Content (Memo):</span>
+                            <div class="d-flex align-items-center">
+                                <span class="badge bg-warning text-dark fs-6 px-3" id="memoContent">VIP UPGRADE</span>
+                                <i class="bi bi-copy text-muted ms-2 cursor-pointer" onclick="copyText('memoContent')" style="cursor: pointer;" title="Copy"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary btn-lg w-100 rounded-pill fw-bold shadow-sm py-3">
+                        <i class="bi bi-check-lg me-2"></i> I Have Transferred
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function copyText(elementId) {
+        var text = document.getElementById(elementId).innerText;
+        navigator.clipboard.writeText(text).then(function() {
+            alert('Copied: ' + text);
+        }, function(err) {
+            console.error('Could not copy text: ', err);
+        });
+    }
+</script>
