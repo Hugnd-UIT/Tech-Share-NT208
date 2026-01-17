@@ -1,0 +1,33 @@
+services:
+  web:
+    image: php:8.1-apache
+    ports:
+      - "80:80"
+    volumes:
+      - ./source:/var/www/html
+    command: >
+      bash -c "docker-php-ext-install mysqli && apache2-foreground"
+    depends_on:
+      - database
+
+  database:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: Study_Hub
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+
+  admin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "1111:80"
+    environment:
+      PMA_HOST: database
+      PMA_USER: root
+      PMA_PASSWORD: root
+    depends_on:
+      - database
+
+# http://localhost:1111 PhpMyAdmin
+# http://localhost Web
