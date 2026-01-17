@@ -6,7 +6,7 @@ services:
     volumes:
       - ./source:/var/www/html
     command: >
-      bash -c "docker-php-ext-install mysqli && apache2-foreground"
+      bash -c "docker-php-ext-install mysqli pdo pdo_mysql && apache2-foreground"
     depends_on:
       - database
 

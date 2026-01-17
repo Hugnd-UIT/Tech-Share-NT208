@@ -1,3 +1,61 @@
+<?php
+
+$error = '';
+$success = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $info = trim($_POST["email"] ?? "");
+    $password = trim($_POST["password"] ?? "");
+
+    if (empty($info) || empty($password)) {
+        $error = "Vui lòng nhập đầy đủ thông tin!";
+    }
+
+    if (empty($error)) {
+        try {
+            $query = "SELECT * FROM users WHERE username = :info OR email = :info";
+
+            $stmt = $conn->prepare($query);
+
+            $stmt->execute([':info' => $info]);
+
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if (!$user) {
+                $error = "Tài khoản không tồn tại";
+                header("Location: index.php?page=login");
+                exit;
+            }
+            
+            if (password_verify($password, $user["password"])) {
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['user_name'] = $user['username'];
+                $success = "Đăng nhập thành công!";
+                header("Location: index.php?page=course");
+                exit;
+            } else {
+                $error = "Mật khẩu không đúng!";
+            }
+            
+        } catch (Exception $e) {
+            if ($e->getCode() == 23000) {
+                $error = "Username hoặc Email đã tồn tại!";
+            } else {
+                $error = "Lỗi hệ thống: " . $e->getMessage();
+            }
+        }
+    }
+}
+?>
+
+<?php if (!empty($error)): ?>
+    <p style="color:red"><?= htmlspecialchars($error) ?></p>
+<?php endif; ?>
+
+<?php if (!empty($success)): ?>
+    <p style="color:green"><?= htmlspecialchars($success) ?></p>
+<?php endif; ?>
+
 <main class="auth-minimal-wrapper">
     <div class="auth-minimal-inner">
         <div class="minimal-card-wrapper">
@@ -14,7 +72,7 @@
                     
                     <form action="index.php?page=login" method="POST" class="w-100 mt-4 pt-2">
                         <div class="mb-4">
-                            <input type="email" name="email" class="form-control" placeholder="Email or Username" required>
+                            <input type="text" name="email" class="form-control" placeholder="Email or Username" required>
                         </div>
                         <div class="mb-3">
                             <input type="password" name="password" class="form-control" placeholder="Password" required>

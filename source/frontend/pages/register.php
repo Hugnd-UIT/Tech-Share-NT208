@@ -1,3 +1,66 @@
+<?php
+
+$error = "";
+$success = ""; 
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $email = trim($_POST["email"] ?? "");
+    $username = trim($_POST["username"] ?? "");
+    $full_name = trim($_POST["fullname"] ?? "");
+    $password = $_POST["password"] ?? "";
+    $comfirm_password = $_POST["confirm_password"] ?? "";
+
+    if (empty($email) || empty($username) || empty($password)) {
+        $error = "Vui lòng nhập đầy đủ thông tin!";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error = "Email không hợp lệ!";
+    } elseif ($password !== $comfirm_password) {
+        $error = "Mật khẩu xác nhận không khớp!";
+    }
+
+    if (empty($error)) {
+        try {
+            // Hash mật khẩu
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+            // Chuẩn bị câu lệnh
+            $query = "INSERT INTO users (username, full_name, email, password) VALUES (:username, :full_name, :email, :password)";
+            
+            // Sử dụng biến kết nối PDO
+            $stmt = $conn->prepare($query);
+            
+            // Thực thi
+            $stmt->execute([
+                ':username' => $username,
+                ':full_name' => $full_name,
+                ':email' => $email,
+                ':password' => $hashed_password
+            ]);
+
+            $success = "Đăng ký thành công!";
+            
+            header("Location: index.php?page=login");
+            exit;
+
+        } catch (PDOException $e) {
+            if ($e->getCode() == 23000) {
+                $error = "Username hoặc Email đã tồn tại!";
+            } else {
+                $error = "Lỗi hệ thống: " . $e->getMessage();
+            }
+        }
+    }
+}
+?>
+
+<?php if (!empty($error)): ?>
+    <p style="color:red"><?= htmlspecialchars($error) ?></p>
+<?php endif; ?>
+
+<?php if (!empty($success)): ?>
+    <p style="color:green"><?= htmlspecialchars($success) ?></p>
+<?php endif; ?>
+
 <main class="auth-minimal-wrapper">
     <div class="auth-minimal-inner">
         <div class="minimal-card-wrapper">

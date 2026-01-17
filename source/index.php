@@ -1,10 +1,10 @@
 <?php
     session_start();
+    ob_start();
     require_once 'backend/configure/database.php';
     
     $page = isset($_GET['page']) ? $_GET['page'] : 'home';
 
-    // Danh sách các trang KHÔNG cần Header và Footer (Full màn hình)
     $auth_pages = ['login', 'register', 'reset'];
     $is_auth_page = in_array($page, $auth_pages);
 ?>
@@ -26,7 +26,6 @@
 
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f8f9fa; }
-        /* Nếu không phải trang auth thì đẩy nội dung xuống để tránh Header che */
         <?php if (!$is_auth_page): ?>
             main { padding-top: 80px; min-height: 80vh; }
         <?php endif; ?>
@@ -75,6 +74,12 @@
                 echo '</main>';
                 break;
 
+            case 'profile':
+                echo '<main>';
+                include 'frontend/pages/profile.php';
+                echo '</main>';
+                break;
+
             default:
                 echo "<div class='container py-5 text-center mt-5'><h1 class='text-danger'>404 - Not Found</h1></div>";
                 break;
@@ -89,3 +94,4 @@
     <script src="frontend/assets/javascript/common-init.min.js"></script>
 </body>
 </html>
+<?php ob_end_flush(); ?>
