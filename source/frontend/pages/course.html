@@ -1,0 +1,54 @@
+<div class="bg-light-subtle" style="min-height: 100vh;">
+    <div class="container py-5">
+        <div class="row g-4">
+            
+            <div class="col-lg-3">
+                <div class="card border-0 shadow-sm rounded-4 sticky-top" style="top: 100px;">
+                    <div class="card-body p-4">
+                        <h6 class="fw-bold text-uppercase text-muted mb-3 ls-1">Bộ lọc</h6>
+                        
+                        <div class="mb-4">
+                            <div class="input-group">
+                                <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-muted"> </i></span>
+                                <input type="text" id="search-input" class="form-control border-start-0 ps-0" placeholder="Mã môn...">
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="fw-bold small mb-2 d-block">Phân loại</label>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input filter-checkbox" type="checkbox" value="Đại cương" id="cat1" checked>
+                                <label class="form-check-label text-muted" for="cat1">Đại cương <span class="badge bg-success-subtle text-success ms-1">Free</span></label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input filter-checkbox" type="checkbox" value="Cơ sở ngành" id="cat2">
+                                <label class="form-check-label text-muted" for="cat2">Cơ sở ngành <i class="bi bi-lock-fill text-warning small"></i></label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input filter-checkbox" type="checkbox" value="Chuyên ngành" id="cat3">
+                                <label class="form-check-label text-muted" for="cat3">Chuyên ngành <i class="bi bi-lock-fill text-warning small"></i></label>
+                            </div>
+                        </div>
+
+                        <button id="apply-filter-btn" class="btn btn-primary w-100 rounded-pill fw-bold">Áp dụng</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-9">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <span class="text-muted small">Hiển thị danh sách môn học</span>
+                </div>
+
+                <div class="row g-4" id="course-list">
+                    
+                    <div class="col-12 text-center py-5">
+                        <div class="spinner-border text-primary" role="status"></div>
+                        <p class="mt-2 text-muted">Đang tải dữ liệu...</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

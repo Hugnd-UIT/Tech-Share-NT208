@@ -44,20 +44,13 @@
                         Register
                     </a>
                 <?php else: ?>
-                    <div class="dropdown ms-2">
-                        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown">
-                            <img src="https://github.com/mdo.png" width="32" height="32" class="rounded-circle">
+                    <div class="ms-2">
+                        <a href="index.php?page=profile" class="d-block link-dark text-decoration-none" title="Trang cá nhân & Cài đặt">
+                            <img src="https://github.com/mdo.png" width="32" height="32" class="rounded-circle border border-2 border-light shadow-sm">
                         </a>
-                        <ul class="dropdown-menu text-small shadow">
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
-                            <li><a class="dropdown-item" href="#">Settings</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="logout.php">Logout</a></li>
-                        </ul>
                     </div>
                 <?php endif; ?>
             </div>
-
         </div>
     </div>
 </nav>

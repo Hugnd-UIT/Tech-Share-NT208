@@ -93,14 +93,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    function copyText(elementId) {
-        var text = document.getElementById(elementId).innerText;
-        navigator.clipboard.writeText(text).then(function() {
-            alert('Copied: ' + text);
-        }, function(err) {
-            console.error('Could not copy text: ', err);
-        });
-    }
-</script>
