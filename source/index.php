@@ -68,15 +68,20 @@
                 echo '</main>';
                 break;
             
-            case 'course':
+            case 'courses':
                 echo '<main>';
-                include 'frontend/pages/course.html';
+                include 'frontend/pages/courses.html';
                 echo '</main>';
                 break;
 
             case 'profile':
                 echo '<main>';
                 include 'frontend/pages/profile.html';
+                echo '</main>';
+                break;
+            case 'detail':
+                echo '<main>';
+                include 'frontend/pages/detail.html';
                 echo '</main>';
                 break;
 

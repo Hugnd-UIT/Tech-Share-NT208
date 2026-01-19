@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             .then(data => {
                 if (data.status === 'success') {
-                    window.location.href = 'index.php?page=course';
+                    window.location.href = 'index.php?page=courses';
                 } else {
                     alert(data.message);
                 }

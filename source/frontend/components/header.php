@@ -27,7 +27,7 @@
             <div class="d-flex align-items-center gap-2 justify-content-end">
                 
                 <a href="index.php" class="nav-link fw-medium text-dark px-2">Home</a>
-                <a href="index.php?page=course" class="nav-link fw-medium text-dark px-2">Courses</a>
+                <a href="index.php?page=courses" class="nav-link fw-medium text-dark px-2">Courses</a>
 
                 <div class="vr d-none d-lg-block mx-2"></div>
 

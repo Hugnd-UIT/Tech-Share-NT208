@@ -23,6 +23,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['user_name'] = $user['username'];
 
+                if (strtotime($user["vip_expiration_date"]) > time()) {
+                    $_SESSION['is_vip'] = true;
+                } else {
+                    $_SESSION['is_vip'] = false;
+                } 
+
                 $response['status'] = 'success';
                 $response['message'] = 'Đăng nhập thành công!';
             }else {
