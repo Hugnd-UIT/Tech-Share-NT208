@@ -40,43 +40,48 @@
         switch ($page) {
             case 'home':
                 echo '<main>'; 
-                include 'frontend/pages/home.php';
+                include 'frontend/pages/home.html';
                 echo '</main>';
                 break;
                 
             case 'login':
-                include 'frontend/pages/login.php'; 
+                include 'frontend/pages/login.html'; 
                 break;
 
             case 'register':
-                include 'frontend/pages/register.php'; 
+                include 'frontend/pages/register.html'; 
                 break;
                 
             case 'reset':
-                include 'frontend/pages/reset.php'; 
+                include 'frontend/pages/reset.html'; 
                 break;
 
             case 'contact':
                 echo '<main>';
-                include 'frontend/pages/contact.php';
+                include 'frontend/pages/contact.html';
                 echo '</main>';
                 break;
 
             case 'payment':
                 echo '<main>';
-                include 'frontend/pages/payment.php';
+                include 'frontend/pages/payment.html';
                 echo '</main>';
                 break;
             
-            case 'course':
+            case 'courses':
                 echo '<main>';
-                include 'frontend/pages/course.php';
+                include 'frontend/pages/courses.html';
                 echo '</main>';
                 break;
 
             case 'profile':
                 echo '<main>';
-                include 'frontend/pages/profile.php';
+                include 'frontend/pages/profile.html';
+                echo '</main>';
+                break;
+            case 'detail':
+                echo '<main>';
+                include 'frontend/pages/detail.html';
                 echo '</main>';
                 break;
 
@@ -88,10 +93,9 @@
 
     <?php if (!$is_auth_page) include 'frontend/components/footer.php'; ?>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    
     <script src="frontend/assets/javascript/vendors.min.js"></script>
     <script src="frontend/assets/javascript/common-init.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 <?php ob_end_flush(); ?>
