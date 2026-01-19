@@ -79,9 +79,9 @@
                 include 'frontend/pages/profile.html';
                 echo '</main>';
                 break;
-            case 'detail':
+            case 'details':
                 echo '<main>';
-                include 'frontend/pages/detail.html';
+                include 'frontend/pages/details.html';
                 echo '</main>';
                 break;
 
