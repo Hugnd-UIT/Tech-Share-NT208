@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const Detail = document.getElementById('sidebar-list');
     const Course = document.getElementById('course-list');
+    const Profile = document.getElementById('account-general');
 
     if (Detail) {
         Load_Details();
@@ -9,7 +10,66 @@ document.addEventListener('DOMContentLoaded', function() {
     if (Course) {
         Load_Courses();
     }
+
+    if (Profile) {
+        Load_Profile();
+    }
 });
+
+function Load_Profile() {
+    const fullname = document.getElementById('user-fullname');
+    const email = document.getElementById('user-email');
+    const avatar = document.getElementById('user-avatar');
+    const Badge = document.getElementById('vip-badge-container');
+
+    fetch('backend/api/get-profile.php')
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            document.getElementById('input-username').value = data.username;
+            document.getElementById('input-fullname').value = data.full_name;
+            document.getElementById('input-email').value = data.email;
+            document.getElementById('input-role').value = data.role;
+
+            if (fullname) {
+                fullname.textContent = data.full_name || data.username;
+            }
+
+            if (email) {
+                email.textContent = data.email;
+            }
+
+            if (avatar) {
+                const name = encodeURIComponent(data.full_name || data.username);
+                avatar.src = `https://ui-avatars.com/api/?name=${name}&background=random`;
+            }
+
+            if (Badge) {
+                if (data.is_vip) {
+                    Badge.innerHTML = `
+                        <div class="badge bg-warning-subtle text-warning px-3 py-2 rounded-pill border border-warning" style="display: inline-flex; align-items: center;">
+                            <i class="bi bi-star-fill" style="margin-right: 6px; line-height: 1;"></i> VIP Member
+                        </div>
+                    `;
+                } else {
+                    Badge.innerHTML = `
+                        <div class="badge bg-secondary-subtle text-secondary px-3 py-2 rounded-pill border">
+                            <i class="bi bi-person me-1"></i> Member
+                        </div>
+                    `;
+                }
+            }
+        } else {
+            console.error('Lỗi:', data.message);
+            if (fullname) fullname.textContent = 'Lỗi tải dữ liệu';
+            if (email) email.textContent = data.message;
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        if (fullname) fullname.textContent = 'Lỗi kết nối';
+    });
+}
 
 function Load_Details() {
     const Sidebar = document.getElementById('sidebar-list');
