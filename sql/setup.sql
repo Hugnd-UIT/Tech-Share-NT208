@@ -1,5 +1,6 @@
 CREATE DATABASE IF NOT EXISTS Study_Hub CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE Study_Hub;
+SET NAMES utf8mb4;
 
 -- 1. Bảng Users 
 CREATE TABLE IF NOT EXISTS users (
