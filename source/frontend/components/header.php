@@ -46,7 +46,7 @@
                 <?php else: ?>
                     <div class="ms-2">
                         <a href="index.php?page=profile" class="d-block link-dark text-decoration-none" title="Trang cá nhân & Cài đặt">
-                            <img src="https://github.com/mdo.png" width="32" height="32" class="rounded-circle border border-2 border-light shadow-sm">
+                            <img src="frontend/assets/image/default-avt.png" width="32" height="32" class="rounded-circle border border-2 border-light shadow-sm">
                         </a>
                     </div>
                 <?php endif; ?>
