@@ -12,11 +12,7 @@
                         <h5 class="fw-bold text-dark mb-1" id="user-fullname">Đang tải...</h5>
                         <p class="text-muted small mb-3" id="user-email">loading...</p>
                         
-                        <div id="vip-badge-container">
-                            <div class="badge bg-secondary-subtle text-secondary px-3 py-2 rounded-pill border">
-                                <i class="bi bi-person me-1"></i> Member
-                            </div>
-                        </div>
+                        <div id="vip-badge-container"></div>
                     </div>
                 </div>
 
@@ -31,7 +27,7 @@
                         <a href="#account-billing" data-bs-toggle="list" class="list-group-item list-group-item-action border-0 rounded-3 p-3 mb-1">
                             <i class="bi bi-credit-card-2-front me-2 text-primary"></i> Gói thành viên
                         </a>
-                        <button id="logoutBtn" class="list-group-item list-group-item-action border-0 rounded-3 p-3 text-danger bg-transparent w-100 text-start">
+                        <button type="button" id="Logout" class="list-group-item list-group-item-action border-0 rounded-3 p-3 text-danger bg-transparent w-100 text-start">
                             <i class="bi bi-box-arrow-right me-2"></i> Đăng xuất
                         </button>
                     </div>
@@ -74,26 +70,103 @@
                     <div class="tab-pane fade" id="account-security">
                         <div class="card border-0 shadow-sm rounded-4 h-100">
                             <div class="card-header bg-white border-bottom-0 p-4 pb-0">
-                                <h5 class="fw-bold text-dark mb-0">Đổi mật khẩu</h5>
+                                <h5 class="fw-bold text-dark mb-0">Bảo mật tài khoản</h5>
                             </div>
+
                             <div class="card-body p-4">
-                                <form>
-                                    <div class="mb-3">
-                                        <label class="form-label small fw-bold text-secondary">Mật khẩu hiện tại</label>
-                                        <input type="password" class="form-control bg-light border-0 py-2">
+                                <div class="list-group list-group-flush">
+                                    
+                                    <div class="list-group-item px-0 py-3 border-bottom">
+                                        <div class="d-flex align-items-start">
+                                            <i class="bi bi-lock-fill text-muted fs-5 me-3 mt-1"></i>
+                                            <div class="flex-grow-1">
+                                                <h6 class="fw-bold text-dark mb-2">Mật khẩu</h6>
+                                                
+                                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                                    <span class="text-secondary small">Đổi mật khẩu</span>
+                                                    <a href="index.php?page=reset">
+                                                        <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
+                                                            Thay đổi
+                                                        </button>
+                                                    </a>
+                                                </div>
+                                                
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <span class="text-secondary small">Lần thay đổi gần nhất</span>
+                                                    <span class="text-dark fw-bold small">Chưa ghi nhận</span>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <label class="form-label small fw-bold text-secondary">Mật khẩu mới</label>
-                                        <input type="password" class="form-control bg-light border-0 py-2">
+
+                                    <div class="list-group-item px-0 py-3 border-bottom">
+                                        <div class="d-flex align-items-start">
+                                            <i class="bi bi-envelope-fill text-muted fs-5 me-3 mt-1"></i>
+                                            <div class="flex-grow-1">
+                                                <h6 class="fw-bold text-dark mb-2">Email</h6>
+                                                
+                                                <div class="mb-2">
+                                                    <span class="text-secondary small d-block">Email</span>
+                                                    <span class="text-dark fw-bold" id="sec-email-display">loading...</span>
+                                                </div>
+
+                                                <div>
+                                                    <span class="text-secondary small d-block mb-1">Trạng thái</span>
+                                                    <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill">
+                                                        Đã xác minh
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="mb-4">
-                                        <label class="form-label small fw-bold text-secondary">Xác nhận mật khẩu mới</label>
-                                        <input type="password" class="form-control bg-light border-0 py-2">
+
+                                    <div class="list-group-item px-0 py-3 border-bottom">
+                                        <div class="d-flex align-items-start">
+                                            <i class="bi bi-phone-fill text-muted fs-5 me-3 mt-1"></i>
+                                            <div class="flex-grow-1">
+                                                <h6 class="fw-bold text-dark mb-2">Thiết bị đăng nhập</h6>
+                                                
+                                                <div class="mb-2">
+                                                    <span class="text-secondary small d-block">Danh sách thiết bị</span>
+                                                    <div class="d-flex align-items-center mt-1">
+                                                        <i class="bi bi-windows text-muted me-2"></i>
+                                                        <span class="text-dark small fw-bold">Windows PC (Thiết bị này)</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="mt-2">
+                                                    <button class="btn btn-sm btn-outline-danger w-100 rounded-pill">
+                                                        Đăng xuất tất cả thiết bị
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="text-end">
-                                        <button type="button" class="btn btn-primary rounded-pill px-4 fw-bold shadow-sm">Cập nhật mật khẩu</button>
+
+                                    <div class="list-group-item px-0 py-3">
+                                        <div class="d-flex align-items-start">
+                                            <i class="bi bi-shield-fill-check text-muted fs-5 me-3 mt-1"></i>
+                                            <div class="flex-grow-1">
+                                                <h6 class="fw-bold text-dark mb-2">Bảo mật nâng cao</h6>
+                                                
+                                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                                    <span class="text-secondary small">Xác thực 2 lớp (2FA)</span>
+                                                    <div class="form-check form-switch m-0">
+                                                        <input class="form-check-input" type="checkbox" role="switch">
+                                                    </div>
+                                                </div>
+
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <span class="text-danger small fw-bold">Khóa tài khoản</span>
+                                                    <button class="btn btn-sm btn-outline-secondary rounded-pill px-3">
+                                                        Khóa
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </form>
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -117,3 +190,4 @@
     </div>
 </div>
 <script src="frontend/javascript/get.js"></script>
+<script src="frontend/javascript/auth.js"></script>

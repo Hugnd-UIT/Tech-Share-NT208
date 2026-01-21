@@ -3,7 +3,7 @@ session_start();
 header('Content-Type: application/json');
 require_once '../configure/database.php';
 
-$response = ['status' => 'error', 'message' => 'Lỗi không xác định', 'username' => '', 'email' => '', 'full_name' => '', 'role' => '', 'is_vip' => false];
+$response = ['status' => 'error', 'message' => 'Lỗi không xác định', 'username' => '', 'email' => '', 'full_name' => '', 'role' => '', 'is_vip' => false, 'vip_expiration_date' => ''];
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     try {
@@ -28,6 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $response['role'] = $info['role'];
             if (strtotime($info["vip_expiration_date"]) > time()) {
                 $response['is_vip'] = true;
+                $response['vip_expiration_date'] = $info["vip_expiration_date"];
             }
         } else {
             $response['message'] = 'Không tìm thấy thông tin user';
