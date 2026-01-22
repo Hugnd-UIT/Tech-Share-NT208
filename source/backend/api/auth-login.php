@@ -6,8 +6,8 @@ require_once '../configure/database.php';
 $response = ['status' => 'error', 'message' => 'Lỗi không xác định'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $info = trim($_POST["email"] ?? "");
-    $password = trim($_POST["password"] ?? "");
+    $info = $_POST["email"] ?? "";
+    $password = $_POST["password"] ?? "";
 
     if (empty($info) || empty($password)) {
         $response['message'] = "Vui lòng nhập đầy đủ thông tin!";
@@ -16,14 +16,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $query = "SELECT * FROM users WHERE username = :info OR email = :info";
             $stmt = $conn->prepare($query);
             $stmt->execute([':info' => $info]);
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if ($user && password_verify($password, $user["password"])) {
-                $_SESSION['role'] = $user['role'];     
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['user_name'] = $user['username'];
+            if ($result && password_verify($password, $result["password"])) {
+                $_SESSION['user_id'] = $result['id'];
+                $_SESSION['user_name'] = $result['username'];
 
-                if (strtotime($user["vip_expiration_date"]) > time()) {
+                if (!empty($result["vip_expiration_date"]) && strtotime($result["vip_expiration_date"]) > time()) {
                     $_SESSION['is_vip'] = true;
                 } else {
                     $_SESSION['is_vip'] = false;
@@ -31,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 $response['status'] = 'success';
                 $response['message'] = 'Đăng nhập thành công!';
-            }else {
+            } else {
                 $response['message'] = "Tài khoản hoặc mật khẩu không đúng!";
             }
         } catch (Exception $e) {

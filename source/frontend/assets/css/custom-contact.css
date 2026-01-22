@@ -1,0 +1,123 @@
+@keyframes slideUpFade {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.bg-light-subtle {
+    background: linear-gradient(120deg, #e0f2f1 0%, #e3f2fd 100%) !important;
+    background-size: 200% 200%;
+    animation: gradientBG 15s ease infinite;
+}
+
+.card {
+    border: none !important;
+    border-radius: 20px !important; 
+    box-shadow: 0 15px 50px rgba(0, 82, 212, 0.15) !important; 
+    overflow: hidden;
+    animation: slideUpFade 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.bg-primary {
+    background: linear-gradient(135deg, #0052d4, #4364f7, #60efff) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.bg-white.bg-opacity-10 {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.bg-white.bg-opacity-10:hover {
+    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+.btn-light.rounded-circle {
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.btn-light.rounded-circle:hover {
+    transform: translateY(-5px) rotate(10deg);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2) !important;
+    background-color: #fff !important;
+    color: #0052d4 !important;
+}
+
+.col-lg-7.bg-white {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+}
+
+h4.text-dark {
+    background: linear-gradient(90deg, #000428, #004e92);
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    font-weight: 800 !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.form-control, .form-select {
+    background-color: #f8fbff !important;
+    border: 1px solid #e1e8ed !important;
+    color: #333 !important;
+    transition: all 0.3s ease;
+    border-radius: 12px !important; 
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: #fff !important;
+    border-color: #4364f7 !important;
+    box-shadow: 0 0 0 4px rgba(67, 100, 247, 0.1) !important;
+    transform: translateY(-2px);
+}
+
+.form-label {
+    color: #546e7a !important;
+    text-transform: uppercase;
+    font-size: 0.75rem !important;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary.rounded-pill {
+    background: linear-gradient(90deg, #0052d4, #4364f7, #60efff) !important;
+    background-size: 200% auto !important;
+    border: none !important;
+    transition: all 0.4s ease;
+}
+
+.btn-primary.rounded-pill:hover {
+    background-position: right center !important;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 82, 212, 0.3) !important;
+}
+
+.col-lg-5 > * { opacity: 0; animation: slideUpFade 0.6s ease-out forwards; }
+.col-lg-5 h3 { animation-delay: 0.2s; }
+.col-lg-5 p { animation-delay: 0.3s; }
+.col-lg-5 .d-flex:nth-of-type(1) { animation-delay: 0.4s; } 
+.col-lg-5 .d-flex:nth-of-type(2) { animation-delay: 0.5s; } 
+.col-lg-5 .d-flex:nth-of-type(3) { animation-delay: 0.6s; } 
+.col-lg-5 .mt-5 { animation-delay: 0.7s; } 
+
+#Contact .row > div { opacity: 0; animation: fadeInScale 0.6s ease-out forwards; }
+#Contact .row > div:nth-child(1) { animation-delay: 0.4s; }
+#Contact .row > div:nth-child(2) { animation-delay: 0.5s; } 
+#Contact .row > div:nth-child(3) { animation-delay: 0.6s; } 
+#Contact .row > div:nth-child(4) { animation-delay: 0.7s; } 
+#Contact .row > div:nth-child(5) { animation-delay: 0.8s; } 

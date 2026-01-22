@@ -6,9 +6,9 @@ require_once '../configure/database.php';
 $response = ['status' => 'error', 'message'=> 'Lỗi không xác định'];
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $email = trim($_POST["email"] ?? "");
-    $username = trim($_POST["username"] ?? "");
-    $full_name = trim($_POST["fullname"] ?? "");
+    $email = $_POST["email"] ?? "";
+    $username = $_POST["username"] ?? "";
+    $full_name = $_POST["fullname"] ?? "";
     $password = $_POST["password"] ?? "";
     $comfirm_password = $_POST["confirm_password"] ?? "";
 
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 ]);
 
                 $response['status'] = 'success';
-                $response['message'] = 'Đăng ký thành công!';
+                $response['message'] = 'Đăng ký thành công! Vui lòng đăng nhập.';
             }
         } catch (PDOException $e) {
             if ($e->getCode() == 23000) {

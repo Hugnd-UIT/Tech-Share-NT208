@@ -1,12 +1,17 @@
-<div class="container-fluid bg-white border-bottom shadow-sm sticky-top" style="z-index: 100;">
+<link rel="stylesheet" href="frontend/assets/css/custom-details.css">
+
+<div class="container-fluid header-bar sticky-top shadow-sm" style="z-index: 100;">
     <div class="container py-3">
         <div class="d-flex align-items-center gap-3">
-            <a href="index.php?page=courses" class="btn btn-outline-secondary btn-sm">
-                <i class="bi bi-arrow-left"></i>
+            <a href="index.php?page=courses" class="btn btn-back btn-sm py-2 px-3">
+                <i class="bi bi-arrow-left me-1"></i> Quay lại
             </a>
+            <div class="vr mx-1 text-muted"></div>
             <div>
-                <h5 class="fw-bold mb-0" id="header-subject-name">Đang tải...</h5>
-                <small class="text-muted" id="header-subject-code">...</small>
+                <h5 class="fw-bold mb-0 text-dark" id="header-subject-name">
+                    <span class="spinner-border spinner-border-sm text-primary"></span> Đang tải...
+                </h5>
+                <small class="text-muted fw-medium" id="header-subject-code">...</small>
             </div>
         </div>
     </div>
@@ -15,54 +20,41 @@
 <div class="container py-4">
     <div class="row g-4">
         
-        <div class="col-md-3">
-            <div class="card shadow-sm border-0 rounded-3">
-                <div class="card-header bg-light fw-bold text-muted small text-uppercase">
-                    <i class="bi bi-list-ul me-1"></i> Danh sách bài học
+        <div class="col-lg-3 col-md-4">
+            <div class="card sidebar-card h-100">
+                <div class="card-header sidebar-header border-0">
+                    <i class="bi bi-collection-play-fill me-2"></i> DANH SÁCH BÀI HỌC
                 </div>
-                <div class="list-group list-group-flush" id="sidebar-list">
-                    <div class="text-center py-3">
-                        <div class="spinner-border spinner-border-sm text-primary"></div>
+                <div class="list-group list-group-flush" style="max-height: 80vh;" id="sidebar-list">
+                    <div class="text-center py-5">
+                        <div class="spinner-border text-primary" role="status"></div>
+                        <p class="mt-2 small text-muted">Đang tải danh sách...</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-9">
-            <div class="card shadow-sm border-0 rounded-3" style="min-height: 500px;">
-                <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
-                    <h5 class="fw-bold mb-0 text-primary" id="viewer-title">
-                        <i class="bi bi-markdown me-2"></i>Giới thiệu
+        <div class="col-lg-9 col-md-8">
+            <div class="card viewer-card" style="min-height: 80vh;">
+                <div class="viewer-header d-flex justify-content-between align-items-center">
+                    <h5 class="fw-bold mb-0 text-truncate pe-3" id="viewer-title">
+                        <i class="bi bi-markdown me-2 text-primary"></i>Giới thiệu
                     </h5>
-                    <a href="#" id="btn-download" class="btn btn-primary btn-sm rounded-pill px-3 d-none">
-                        <i class="bi bi-download me-1"></i> Tải về
+                    <a href="#" id="btn-download" class="btn btn-sm rounded-pill px-4 py-2 d-none">
+                        <i class="bi bi-cloud-arrow-down-fill me-2"></i> Tải tài liệu
                     </a>
                 </div>
 
-                <div class="card-body p-0" id="viewer-content">
+                <div class="card-body p-0 bg-light position-relative" id="viewer-content">
+                    <div class="d-flex flex-column align-items-center justify-content-center h-100 text-muted opacity-50 pt-5">
+                        <i class="bi bi-book display-1 mb-3"></i>
+                        <p>Chọn một bài học để xem nội dung</p>
                     </div>
+                </div>
             </div>
         </div>
 
     </div>
 </div>
-
-<style>
-    .list-group-item.active {
-        background-color: #f0f6fc;
-        color: #0969da;
-        border-color: transparent;
-        font-weight: 600;
-        border-left: 3px solid #0969da;
-    }
-    .list-group-item {
-        border-left: 3px solid transparent;
-        cursor: pointer;
-        font-size: 0.95rem;
-    }
-    .list-group-item:hover { background-color: #f8f9fa; }
-    iframe { width: 100%; height: 80vh; border: none; }
-    pre { background: #f6f8fa; padding: 20px; border-radius: 8px; margin: 20px; }
-</style>
 
 <script src="frontend/javascript/get.js"></script>

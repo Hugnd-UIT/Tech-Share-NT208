@@ -138,7 +138,7 @@ function Load_Profile() {
                             <i class="bi bi-box-seam display-4 text-muted mb-3"></i>
                             <h5 class="fw-bold">Bạn đang dùng gói miễn phí</h5>
                             <p class="text-muted small mb-4">Nâng cấp lên VIP để mở khóa toàn bộ tài liệu và tính năng.</p>
-                            <a href="index.php?page=payment" class="btn btn-outline-primary rounded-pill fw-bold w-100">
+                            <a href="index.php?page=discover" class="btn btn-outline-primary rounded-pill fw-bold w-100">
                                 <i class="bi bi-gem me-2"></i>Nâng cấp VIP
                             </a>
                         </div>
@@ -182,8 +182,7 @@ function Load_Details() {
         }
     };
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get('id');
+    const id = new URLSearchParams(window.location.search).get('id');
 
     if (!id) {
         Sidebar.innerHTML = '<div class="text-danger p-3">Không tìm thấy ID!</div>';
@@ -230,8 +229,8 @@ function Load_Details() {
 
             for (const [Group_Name, items] of Object.entries(Groups)) {
                 Sidebar.innerHTML += `
-                    <div class="bg-light fw-bold text-dark px-3 py-2 border-bottom border-top small text-uppercase mt-2 text-truncate" title="${Group_Name.replace(/<[^>]*>/g, '')}">
-                        <i class="bi bi-folder2-open me-1 text-warning"></i> ${Group_Name}
+                    <div class="list-group-folder text-truncate" title="${Group_Name.replace(/<[^>]*>/g, '')}">
+                        <i class="bi bi-folder2-open me-2 text-warning"></i> ${Group_Name}
                     </div>
                 `;
 
@@ -239,15 +238,14 @@ function Load_Details() {
                     let Icon = item.file_type === 'pdf' ? 'bi-file-pdf-fill text-danger' : 'bi-file-earmark-code-fill text-primary';
                     
                     Sidebar.innerHTML += `
-                        <button class="list-group-item list-group-item-action py-2 ps-4 border-0 border-bottom" 
+                        <button class="list-group-item list-group-item-action" 
                                 onclick="View_Document(${item.originalIndex})" 
                                 id="doc-btn-${item.originalIndex}">
                             <div class="d-flex align-items-center">
-                                <i class="bi ${Icon} me-2 fs-5"></i>
-                                <span class="small fw-semibold text-truncate">${item.shortTitle}</span>
+                                <i class="bi ${Icon} me-3 fs-6"></i>
+                                <span class="text-truncate">${item.shortTitle}</span>
                             </div>
-                        </button>
-                    `;
+                        </button>`;
                 });
             }
 
@@ -282,7 +280,7 @@ function Load_Courses() {
                 if (Vip) {
                     if (data.is_vip === false)
                     Action_Button = `
-                        <a href="index.php?page=payment" class="btn btn-warning w-100 fw-bold rounded-pill text-dark shadow-sm">
+                        <a href="index.php?page=discover" class="btn btn-warning w-100 fw-bold rounded-pill text-dark shadow-sm">
                             <i class="bi bi-lock-fill me-1"></i> Mở khóa ngay
                         </a>`;
                     else 
@@ -298,22 +296,18 @@ function Load_Courses() {
                 }
 
                 const html = `
-                    <div class="col-md-6 col-xl-4">
-                        <div class="card h-100 border-0 shadow-sm hover-up rounded-4">
+                    <div class="col-md-6 col-xl-4 course-item"> <div class="card h-100 border-0 shadow-sm hover-up rounded-4">
                             <div class="card-body p-4 d-flex flex-column">
                                 <div class="d-flex justify-content-between align-items-start mb-3">
-                                    <span class="badge bg-light text-primary border border-primary-subtle rounded-pill px-3">
-                                        ${course.subject_code}
+                                    <span class="badge bg-light text-primary border border-primary-subtle rounded-pill px-3 course-code"> ${course.subject_code}
                                     </span>
                                     ${Vip ? '<span class="badge bg-warning text-dark rounded-pill"><i class="bi bi-star-fill"></i> VIP</span>' : ''}
                                 </div>
                                 
-                                <h5 class="fw-bold text-dark mb-2 text-truncate" title="${course.subject_name}">
-                                    ${course.subject_name}
+                                <h5 class="fw-bold text-dark mb-2 text-truncate course-name" title="${course.subject_name}"> ${course.subject_name}
                                 </h5>
                                 
-                                <p class="text-muted small mb-4 flex-grow-1">
-                                    ${course.category} • ${course.credits} TC
+                                <p class="text-muted small mb-4 flex-grow-1 course-cat"> ${course.category} • ${course.credits} TC
                                 </p>
                                 
                                 <div class="mt-auto">
@@ -326,6 +320,10 @@ function Load_Courses() {
                 
                 List.innerHTML += html;
             });
+
+            if (typeof filter_logic === 'function') {
+                filter_logic();
+            }
         } else {
             List.innerHTML = '<div class="col-12 text-center text-muted">Chưa có môn học nào.</div>';
         }

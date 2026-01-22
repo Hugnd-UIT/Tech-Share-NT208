@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $response['email'] = $info['email'];
             $response['full_name'] = $info['full_name'];
             $response['role'] = $info['role'];
-            if (strtotime($info["vip_expiration_date"]) > time()) {
+            if (isset($_SESSION['is_vip']) && $_SESSION['is_vip'] === true) {
                 $response['is_vip'] = true;
                 $response['vip_expiration_date'] = $info["vip_expiration_date"];
             }

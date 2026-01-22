@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="frontend/assets/css/custom-reset.css">
+
 <main class="auth-minimal-wrapper">
     <div class="auth-minimal-inner">
         <div class="minimal-card-wrapper">
@@ -7,41 +9,45 @@
                     <img src="frontend/assets/image/logo.png" alt="Logo" class="img-fluid">
                 </div>
 
-                <div class="card-body p-sm-5">
-                    <h2 class="fs-20 fw-bolder mb-4">Forgot Password</h2>
-                    <h4 class="fs-13 fw-bold mb-2">Recover Access</h4>
-                    <p class="fs-12 fw-medium text-muted">
-                        Enter your email address and we will send you a password reset link.
-                    </p>
+                <div class="card-body p-sm-5 pt-5">
+                    <div class="text-center mt-3">
+                        <h2 class="fs-20 fw-bolder mb-2">Quên Mật Khẩu?</h2>
+                        <h4 class="fs-13 fw-bold mb-2 text-muted">Khôi phục quyền truy cập</h4>
+                        <p class="fs-12 fw-medium text-muted">
+                            Nhập email đã đăng ký, hệ thống sẽ gửi liên kết đặt lại mật khẩu cho bạn.
+                        </p>
+                    </div>
                     
-                    <form action="index.php?page=reset" method="POST" class="w-100 mt-4 pt-2">
+                    <form id="Reset" method="POST" class="w-100 mt-4 pt-2">
                         <div class="mb-4">
                             <input 
                                 type="email" 
                                 name="email" 
                                 class="form-control" 
-                                placeholder="Enter your email address" 
+                                placeholder="Nhập địa chỉ email của bạn" 
                                 required
                             >
                         </div>
-                        <div class="mt-5">
+                        <div class="mt-4">
                             <button type="submit" class="btn btn-lg btn-primary w-100">
-                                Send Link
+                                Gửi Liên Kết
                             </button>
                         </div>
                     </form>
                     
-                    <div class="mt-5 text-muted text-center">
-                        <span>Go back?</span>
-                        <a href="index.php?page=login" class="fw-bold">Sign In</a>
+                    <div class="mt-5 text-muted text-center fs-13">
+                        <span>Quay lại?</span>
+                        <a href="index.php?page=login" class="fw-bold ms-1">Đăng nhập</a>
                     </div>
                     
-                    <div class="mt-3 text-muted text-center">
-                        <span>Don't have an account?</span>
-                        <a href="index.php?page=register" class="fw-bold">Create one</a>
+                    <div class="mt-3 text-muted text-center fs-13">
+                        <span>Chưa có tài khoản?</span>
+                        <a href="index.php?page=register" class="fw-bold ms-1">Đăng ký ngay</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </main>
+
+<script src="frontend/javascript/auth.js"></script>

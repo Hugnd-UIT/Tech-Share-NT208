@@ -15,10 +15,10 @@ use PHPMailer\PHPMailer\Exception;
 $response = ['status' => 'error', 'message' => 'Lỗi không xác định'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = $_POST["name"] ?? null;
-    $email = $_POST["email"] ?? null;
-    $topic = $_POST["topic"] ?? null;
-    $content = $_POST["content"] ?? null;
+    $name = $_POST["name"] ?? "";
+    $email = $_POST["email"] ?? "";
+    $topic = $_POST["topic"] ?? "";
+    $content = $_POST["content"] ?? "";
 
     try {
         $mail = new PHPMailer();
@@ -42,8 +42,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         Nội dung:$content
         ";
         
-        $mail->send();
-        $response['status'] = 'success';
+        if ($mail->send()) {
+            $response['status'] = 'success';
+            $response['message'] = 'Gửi tin nhắn thành công';
+        } else {
+            $response['message'] = 'Không thể gửi email';
+        }
     } catch(Exception $e) {
         $response['message'] = "Lỗi hệ thống: " . $e->getMessage();
     }
