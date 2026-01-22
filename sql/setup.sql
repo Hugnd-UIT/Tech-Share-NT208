@@ -9,10 +9,12 @@ CREATE TABLE IF NOT EXISTS users (
     email VARCHAR(100) NOT NULL UNIQUE, 
     password VARCHAR(255) NOT NULL,
     full_name NVARCHAR(100),
-    avatar VARCHAR(255) DEFAULT 'default_avatar.png', 
+    avatar VARCHAR(255) DEFAULT 'default-avatar.png', 
     role ENUM('admin', 'student') DEFAULT 'student',
-    vip_expiration_date DATETIME DEFAULT NULL, 
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    vip_expiration_date DATETIME DEFAULT NULL,
+    reset_token VARCHAR(255) DEFAULT NULL,
+    reset_expire DATETIME DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- 2. Bảng Subjects 

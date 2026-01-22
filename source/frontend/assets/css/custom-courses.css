@@ -1,0 +1,139 @@
+@keyframes slideUpFade {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.bg-light-subtle {
+    background: linear-gradient(120deg, #e0f2f1 0%, #e3f2fd 100%) !important;
+    background-size: 200% 200%;
+    animation: gradientBG 15s ease infinite;
+}
+
+.card.sticky-top {
+    border: none !important;
+    border-radius: 16px !important;
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(10px); 
+    box-shadow: 0 10px 30px rgba(0, 82, 212, 0.1) !important;
+    animation: slideUpFade 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    z-index: 100; 
+}
+
+.input-group {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.input-group:focus-within {
+    box-shadow: 0 0 0 3px rgba(67, 100, 247, 0.15);
+    transform: translateY(-2px);
+}
+
+.input-group-text {
+    background-color: #fff !important;
+    border: none !important;
+    color: #4364f7 !important; 
+}
+
+#search-input {
+    border: none !important;
+    background-color: #fff !important;
+    color: #333;
+    font-weight: 500;
+}
+
+#search-input::placeholder {
+    color: #99a;
+}
+
+.form-check {
+    padding-left: 2em; 
+    margin-bottom: 0.75rem !important;
+}
+
+.form-check-input {
+    width: 1.2em;
+    height: 1.2em;
+    border: 2px solid #d1d9e6;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.form-check-input:checked {
+    background-color: #0052d4; 
+    border-color: #0052d4;
+    box-shadow: 0 0 10px rgba(0, 82, 212, 0.4);
+}
+
+.form-check-label {
+    cursor: pointer;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.form-check-input:checked + .form-check-label {
+    color: #0052d4 !important; 
+    font-weight: 700;
+}
+
+#course-count {
+    background: linear-gradient(90deg, #0052d4, #60efff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    font-size: 1.1rem;
+}
+
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+    border-width: 0.25em;
+    color: #4364f7 !important;
+}
+
+.course-card {
+    border: none;
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+    height: 100%;
+}
+
+.course-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 82, 212, 0.15);
+}
+
+.course-card .card-img-top {
+    height: 160px;
+    object-fit: cover;
+}
+
+.course-card .badge {
+    background: linear-gradient(135deg, #0052d4, #4364f7);
+    box-shadow: 0 4px 10px rgba(0, 82, 212, 0.3);
+}
+
+.course-card .btn-detail {
+    background-color: #f0f7ff;
+    color: #0052d4;
+    font-weight: 600;
+    border: none;
+    transition: all 0.3s;
+}
+
+.course-card .btn-detail:hover {
+    background-color: #0052d4;
+    color: #fff;
+}

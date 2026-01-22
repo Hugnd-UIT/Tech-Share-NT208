@@ -5,7 +5,7 @@
     
     $page = isset($_GET['page']) ? $_GET['page'] : 'home';
 
-    $auth_pages = ['login', 'register', 'reset'];
+    $auth_pages = ['login', 'register', 'reset', 'confirm', 'payment', 'contact'];
     $is_auth_page = in_array($page, $auth_pages);
 ?>
 
@@ -15,27 +15,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>TechShare - Study Hub</title>
-    
     <link rel="shortcut icon" type="image/x-icon" href="frontend/assets/image/logo.ico">
-    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-    
     <link rel="stylesheet" type="text/css" href="frontend/assets/css/vendors.min.css">
     <link rel="stylesheet" type="text/css" href="frontend/assets/css/theme.min.css">
-
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f8f9fa; }
         <?php if (!$is_auth_page): ?>
-            main { padding-top: 80px; min-height: 80vh; }
+            main { padding-top: 60px; min-height: 80vh; }
         <?php endif; ?>
     </style>
 </head>
 
 <body>
-
     <?php if (!$is_auth_page) include 'frontend/components/header.php'; ?>
-
     <?php
         switch ($page) {
             case 'home':
@@ -57,17 +51,23 @@
                 break;
 
             case 'contact':
-                echo '<main>';
                 include 'frontend/pages/contact.html';
-                echo '</main>';
                 break;
 
             case 'payment':
-                echo '<main>';
                 include 'frontend/pages/payment.html';
-                echo '</main>';
+                break;
+
+            case 'confirm':
+                include 'frontend/pages/confirm.html';
                 break;
             
+            case 'discover':
+                echo '<main>';
+                include 'frontend/pages/discover.html';
+                echo '<main>';
+                break;
+
             case 'courses':
                 echo '<main>';
                 include 'frontend/pages/courses.html';
@@ -79,6 +79,7 @@
                 include 'frontend/pages/profile.html';
                 echo '</main>';
                 break;
+
             case 'details':
                 echo '<main>';
                 include 'frontend/pages/details.html';

@@ -1,0 +1,181 @@
+@keyframes slideDownFade {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideRightFade {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.9); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+body {
+    background-color: #f0f2f5; 
+    background: linear-gradient(120deg, #e0f2f1 0%, #e3f2fd 100%);
+    background-size: 200% 200%;
+    animation: gradientBG 15s ease infinite;
+    min-height: 100vh;
+}
+
+.header-bar {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 82, 212, 0.1) !important;
+    animation: slideDownFade 0.6s ease-out;
+}
+
+.btn-back {
+    border: 1px solid #e1e8ed;
+    color: #555;
+    border-radius: 12px;
+    transition: all 0.2s;
+}
+
+.btn-back:hover {
+    background-color: #0052d4;
+    color: #fff;
+    border-color: #0052d4;
+    transform: translateX(-3px);
+}
+
+.sidebar-card {
+    border: none !important;
+    border-radius: 16px !important;
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+    overflow: hidden;
+    animation: slideRightFade 0.8s ease-out;
+}
+
+.sidebar-header {
+    background: linear-gradient(135deg, #0052d4, #4364f7);
+    color: white;
+    font-weight: 700;
+    padding: 15px 20px;
+    letter-spacing: 0.5px;
+}
+
+.list-group-item {
+    border: none !important;
+    border-left: 3px solid transparent !important;
+    padding: 12px 20px;
+    font-size: 0.95rem;
+    color: #495057;
+    transition: all 0.2s ease;
+    background: transparent;
+}
+
+.list-group-item:hover {
+    background-color: #f1f8ff;
+    color: #0052d4;
+    padding-left: 25px; 
+}
+
+.list-group-item.active {
+    background-color: #e3f2fd !important;
+    color: #0052d4 !important; 
+    border-left: 4px solid #0052d4 !important;
+    font-weight: 600;
+}
+
+.list-group-item i {
+    transition: color 0.2s;
+}
+
+.list-group-item.active i {
+    color: #0052d4 !important;
+}
+
+.list-group-folder {
+    background-color: #f8f9fa;
+    color: #6c757d;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 20px;
+    border-bottom: 1px solid #eee;
+    margin-top: 0 !important; 
+}
+
+.viewer-card {
+    border: none !important;
+    border-radius: 16px !important;
+    box-shadow: 0 10px 40px rgba(0, 82, 212, 0.08) !important;
+    animation: popIn 0.8s ease-out;
+    background: #fff;
+    overflow: hidden;
+}
+
+.viewer-header {
+    background-color: #fff;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 20px 25px;
+}
+
+#viewer-title {
+    background: linear-gradient(90deg, #0052d4, #4364f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+}
+
+#btn-download {
+    background: linear-gradient(135deg, #0052d4, #60efff);
+    border: none;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0, 82, 212, 0.3);
+    transition: all 0.3s;
+}
+
+#btn-download:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 82, 212, 0.4);
+}
+
+#viewer-content iframe {
+    width: 100%; 
+    height: 80vh; 
+    border: none; 
+    display: block; 
+}
+
+@media (max-width: 768px) {
+    .sidebar-card {
+        margin-bottom: 20px;
+    }
+    #viewer-content iframe {
+        height: 60vh;
+    }
+}
+
+#sidebar-list {
+    padding-bottom: 50px !important;
+    border-top: 1px solid #eee !important;
+}
+
+#sidebar-list > div:first-child {
+    margin-top: 0 !important;
+    border-top-left-radius: 8px !important;
+    border-top-right-radius: 8px !important;
+}
+
+.list-group-folder {
+    line-height: 1.5 !important;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+    min-height: 45px !important; 
+    display: flex;
+    align-items: center;
+}
