@@ -40,7 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             if ($e->getCode() == 23000) {
                 $response['message'] = "Username hoặc Email đã tồn tại!";
             } else {
-                $response['message'] = "Lỗi hệ thống: " . $e->getMessage();
+                error_log("Register Error: " . $e->getMessage()); 
+                $response['message'] = "Lỗi hệ thống: Đã có sự cố xảy ra, vui lòng thử lại sau.";
             }
         }
     }

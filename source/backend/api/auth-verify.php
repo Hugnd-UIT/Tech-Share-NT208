@@ -7,7 +7,7 @@ $response = ['status' => 'error', 'message' => 'Lỗi không xác định'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pass = $_POST["password"] ?? "";
-    $comfirm_password = $_POST["confirm_password"] ?? "";
+    $comfirm_password = $_POST["comfirm_password"] ?? "";
     $token = $_POST['token'] ?? '';
     
     if (empty($pass) || empty($comfirm_password)) {
@@ -29,7 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $response['status'] = 'success';
             $response['message'] = 'Đổi mật khẩu thành công!';
         } catch(Exception $e) {
-            $response['message'] = "Lỗi hệ thống: " . $e->getMessage();
+            error_log("Verify Error: " . $e->getMessage()); 
+            $response['message'] = "Lỗi hệ thống: Đã có sự cố xảy ra, vui lòng thử lại sau.";
         }
     }
 }

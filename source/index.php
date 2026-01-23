@@ -52,8 +52,8 @@
                 include 'frontend/pages/payment.html';
                 break;
 
-            case 'confirm':
-                include 'frontend/pages/confirm.html';
+            case 'verify':
+                include 'frontend/pages/verify.html';
                 break;
             
             case 'home':

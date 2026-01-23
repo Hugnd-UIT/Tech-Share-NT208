@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     Handle_Register();
     Handle_Contact();
-    Handle_Confirm();
+    Handle_Verify();
     Handle_Payment();
     Handle_Logout();
     Handle_Login();
@@ -34,17 +34,17 @@ function Handle_Payment() {
     }
 }
 
-function Handle_Confirm() {
-    const Confirm_Form = document.querySelector('#Confirm');
+function Handle_Verify() {
+    const Comfirm_Form = document.querySelector('#Comfirm');
 
-    if (Confirm_Form) {
-        Confirm_Form.addEventListener('submit', function(e) {
+    if (Comfirm_Form) {
+        Comfirm_Form.addEventListener('submit', function(e) {
             e.preventDefault();
             const Data = new FormData(this);
             const token = new URLSearchParams(window.location.search).get('token');
             Data.append('token', token); 
 
-            fetch('./backend/api/auth-confirm.php', {
+            fetch('./backend/api/auth-verify.php', {
                 method: 'POST',
                 body: Data
             })

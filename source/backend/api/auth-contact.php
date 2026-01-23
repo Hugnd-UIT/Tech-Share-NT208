@@ -15,10 +15,10 @@ use PHPMailer\PHPMailer\Exception;
 $response = ['status' => 'error', 'message' => 'Lỗi không xác định'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = $_POST["name"] ?? "";
-    $email = $_POST["email"] ?? "";
-    $topic = $_POST["topic"] ?? "";
-    $content = $_POST["content"] ?? "";
+    $name = htmlspecialchars($_POST['name'] ?? "");
+    $email = htmlspecialchars($_POST["email"] ?? "");
+    $topic = htmlspecialchars($_POST["topic"] ?? "");
+    $content = htmlspecialchars($_POST['message'] ?? "");
 
     try {
         $mail = new PHPMailer();
@@ -26,8 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail->isSMTP();
         $mail->Host = "smtp.gmail.com";
         $mail->SMTPAuth = true;
-        $mail->Username = "hungnd.attt2024@gmail.com";
-        $mail->Password = "vbft weak wjbh dyvf";
+        $mail->setFrom(getenv('SMTP_EMAIL'), "Tech Share");
+        $mail->addAddress(getenv('SMTP_EMAIL'));
         $mail->SMTPSecure = "tls";
         $mail->Port = 587;
         $mail->setFrom("hungnd.attt2024@gmail.com", "Tech Share");
@@ -46,10 +46,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $response['status'] = 'success';
             $response['message'] = 'Gửi tin nhắn thành công';
         } else {
-            $response['message'] = 'Không thể gửi email';
+            error_log("Mail Error: " . $mail->ErrorInfo);
+            $response['message'] = 'Không thể gửi email lúc này.';
         }
     } catch(Exception $e) {
-        $response['message'] = "Lỗi hệ thống: " . $e->getMessage();
+        error_log("Contact Error: " . $e->getMessage()); 
+        $response['message'] = "Lỗi hệ thống: Đã có sự cố xảy ra, vui lòng thử lại sau.";
     }
 }
 

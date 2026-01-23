@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS users (
     vip_expiration_date DATETIME DEFAULT NULL,
     reset_token VARCHAR(255) DEFAULT NULL,
     reset_expire DATETIME DEFAULT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- 2. Bảng Subjects 
