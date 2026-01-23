@@ -296,27 +296,30 @@ function Load_Courses() {
                 }
 
                 const html = `
-                    <div class="col-md-6 col-xl-4 course-item"> <div class="card h-100 border-0 shadow-sm hover-up rounded-4">
-                            <div class="card-body p-4 d-flex flex-column">
-                                <div class="d-flex justify-content-between align-items-start mb-3">
-                                    <span class="badge bg-light text-primary border border-primary-subtle rounded-pill px-3 course-code"> ${course.subject_code}
-                                    </span>
-                                    ${Vip ? '<span class="badge bg-warning text-dark rounded-pill"><i class="bi bi-star-fill"></i> VIP</span>' : ''}
-                                </div>
-                                
-                                <h5 class="fw-bold text-dark mb-2 text-truncate course-name" title="${course.subject_name}"> ${course.subject_name}
-                                </h5>
-                                
-                                <p class="text-muted small mb-4 flex-grow-1 course-cat"> ${course.category} • ${course.credits} TC
-                                </p>
-                                
-                                <div class="mt-auto">
-                                    ${Action_Button}
-                                </div>
+                <div class="col-md-6 col-xl-4 course-item"> 
+                    <div class="card h-100 border-0 shadow-sm hover-up rounded-4">
+                        <div class="card-body p-4 d-flex flex-column" style="min-height: 250px;">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <span class="badge bg-light text-primary border border-primary-subtle rounded-pill px-3"> 
+                                    ${course.subject_code}
+                                </span>
+                                ${Vip ? '<span class="badge bg-warning text-dark rounded-pill"><i class="bi bi-star-fill"></i> VIP</span>' : ''}
+                            </div>
+                            
+                            <h5 class="fw-bold text-dark mb-2 text-truncate" title="${course.subject_name}"> 
+                                ${course.subject_name}
+                            </h5>
+                            
+                            <p class="text-muted small mb-4 flex-grow-1"> 
+                                ${course.category} • ${course.credits} TC
+                            </p>
+                            
+                            <div class="mt-auto">
+                                ${Action_Button}
                             </div>
                         </div>
                     </div>
-                `;
+                </div>`;
                 
                 List.innerHTML += html;
             });

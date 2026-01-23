@@ -2,9 +2,7 @@
     session_start();
     ob_start();
     require_once 'backend/configure/database.php';
-    
     $page = isset($_GET['page']) ? $_GET['page'] : 'home';
-
     $auth_pages = ['login', 'register', 'reset', 'confirm', 'payment', 'contact'];
     $is_auth_page = in_array($page, $auth_pages);
 ?>
@@ -19,25 +17,21 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="frontend/assets/css/vendors.min.css">
-    <link rel="stylesheet" type="text/css" href="frontend/assets/css/theme.min.css">
+    <link rel="stylesheet" type="text/css" href="frontend/assets/css/bootstrap.min.css">
+    
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f8f9fa; }
         <?php if (!$is_auth_page): ?>
             main { padding-top: 60px; min-height: 80vh; }
         <?php endif; ?>
     </style>
-</head>
 
+</head>
 <body>
     <?php if (!$is_auth_page) include 'frontend/components/header.php'; ?>
+
     <?php
         switch ($page) {
-            case 'home':
-                echo '<main>'; 
-                include 'frontend/pages/home.html';
-                echo '</main>';
-                break;
-                
             case 'login':
                 include 'frontend/pages/login.html'; 
                 break;
@@ -60,6 +54,12 @@
 
             case 'confirm':
                 include 'frontend/pages/confirm.html';
+                break;
+            
+            case 'home':
+                echo '<main>'; 
+                include 'frontend/pages/home.html';
+                echo '</main>';
                 break;
             
             case 'discover':
@@ -95,7 +95,7 @@
     <?php if (!$is_auth_page) include 'frontend/components/footer.php'; ?>
 
     <script src="frontend/assets/javascript/vendors.min.js"></script>
-    <script src="frontend/assets/javascript/common-init.min.js"></script>
+    <script src="frontend/assets/javascript/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
