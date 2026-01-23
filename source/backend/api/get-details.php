@@ -17,6 +17,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $stmtSub->execute([':id' => $id]);
         $subject = $stmtSub->fetch(PDO::FETCH_ASSOC);
 
+        if (!$subject) {
+            throw new Exception("Môn học không tồn tại");
+        }
+
+        if ($subject['is_vip'] == 1) {
+            if (!isset($_SESSION['user_id'])) {
+                $response['message'] = "Nội dung VIP! Bạn cần đăng nhập để xem.";
+                echo json_encode($response);
+                exit;
+            }
+
+            $Vip = isset($_SESSION['is_vip']) && $_SESSION['is_vip'] === true;
+
+            if (!$Vip) {
+                $response['message'] = "Đây là tài liệu VIP. Vui lòng nâng cấp tài khoản!";
+                echo json_encode($response);
+                exit;
+            }
+        }
+
         $query = "SELECT * FROM documents WHERE subject_id = :id ORDER BY id ASC";
         $stmt = $conn->prepare($query);
         $stmt->execute([':id' => $id]); 
@@ -27,7 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $response['subject'] = $subject; 
         $response['data'] = $result;
     } catch (Exception $e) {
-        $response['message'] = "Lỗi hệ thống: ". $e->getMessage();
+        error_log("Details Error: " . $e->getMessage()); 
+        $response['message'] = "Lỗi hệ thống: Đã có sự cố xảy ra, vui lòng thử lại sau.";
     }
 }
 

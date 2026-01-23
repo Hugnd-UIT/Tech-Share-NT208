@@ -5,6 +5,13 @@ services:
       - "80:80"
     volumes:
       - ./source:/var/www/html
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - SMTP_EMAIL=${SMTP_EMAIL}
+      - SMTP_PASSWORD=${SMTP_PASSWORD}
     command: >
       bash -c "docker-php-ext-install mysqli pdo pdo_mysql && apache2-foreground"
     depends_on:
@@ -14,8 +21,8 @@ services:
     image: mysql:5.7
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: Study_Hub
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD} 
+      MYSQL_DATABASE: ${DB_NAME}
     volumes:
       - ./sql:/docker-entrypoint-initdb.d
 
@@ -25,8 +32,8 @@ services:
       - "1111:80"
     environment:
       PMA_HOST: database
-      PMA_USER: root
-      PMA_PASSWORD: root
+      PMA_USER: ${DB_USER}
+      PMA_PASSWORD: ${DB_PASSWORD} 
     depends_on:
       - database
 

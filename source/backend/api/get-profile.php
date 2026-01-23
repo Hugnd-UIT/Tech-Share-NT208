@@ -34,7 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $response['message'] = 'Không tìm thấy thông tin user';
         }
     } catch(Exception $e) {
-        $response['message'] = "Lỗi hệ thống: ". $e->getMessage();
+        error_log("Profile Error: " . $e->getMessage()); 
+        $response['message'] = "Lỗi hệ thống: Đã có sự cố xảy ra, vui lòng thử lại sau.";
     }
 }
 

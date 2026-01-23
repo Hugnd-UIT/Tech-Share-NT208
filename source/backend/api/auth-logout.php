@@ -12,7 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $response['status'] = 'success';
         $response['message'] = 'Đăng xuất thành công';
     } catch(Exception $e) {
-        $response['message'] = "Lỗi hệ thống: ". $e->getMessage();
+        error_log("Logout Error: " . $e->getMessage()); 
+        $response['message'] = "Lỗi hệ thống: Đã có sự cố xảy ra, vui lòng thử lại sau.";
     }
 }
 

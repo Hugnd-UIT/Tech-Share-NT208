@@ -16,6 +16,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+function XSS_Defend(text) {
+    if (!text) return text;
+    return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
 function Load_Profile() {
     const fullname = document.getElementById('user-fullname');
     const email = document.getElementById('user-email');
@@ -165,11 +175,12 @@ function Load_Details() {
         document.querySelectorAll('.list-group-item').forEach(el => 
             el.classList.remove('active', 'bg-primary-subtle', 'text-primary')
         );
+
         const btn = document.getElementById(`doc-btn-${index}`);
         if(btn) btn.classList.add('active', 'bg-primary-subtle', 'text-primary');
 
         const titleEl = document.getElementById('viewer-title');
-        if(titleEl) titleEl.innerHTML = `<i class="bi bi-book-half me-2"></i> ${doc.title}`;
+        if(titleEl) titleEl.innerHTML = `<i class="bi bi-book-half me-2"></i> ${XSS_Defend(doc.title)}`;
         
         const viewer = document.getElementById('viewer-content');
         if(viewer) viewer.innerHTML = `<iframe src="${doc.file_path}" style="width:100%; height:80vh; border:none;"></iframe>`;
@@ -217,7 +228,9 @@ function Load_Details() {
                 let Display_Title = doc.title; 
 
                 if (Parts.length > 1) {
-                    Group_Name = Parts.slice(0, Parts.length - 1).join(' <span class="text-muted mx-1">/</span> ');
+                    Group_Name = Parts.slice(0, Parts.length - 1)
+                        .map(part => XSS_Defend(part))
+                        .join(' <span class="text-muted mx-1">/</span> ');
                     Display_Title = Parts[Parts.length - 1].trim();
                 }
 
@@ -243,7 +256,7 @@ function Load_Details() {
                                 id="doc-btn-${item.originalIndex}">
                             <div class="d-flex align-items-center">
                                 <i class="bi ${Icon} me-3 fs-6"></i>
-                                <span class="text-truncate">${item.shortTitle}</span>
+                                <span class="text-truncate">${XSS_Defend(item.shortTitle)}</span>
                             </div>
                         </button>`;
                 });
@@ -252,7 +265,7 @@ function Load_Details() {
             if(data.data.length > 0) window.View_Document(0);
 
         } else {
-            Sidebar.innerHTML = `<div class="p-3 text-danger">${data.message}</div>`;
+            Sidebar.innerHTML = `<div class="p-3 text-danger">${XSS_Defend(data.message)}</div>`;
         }
     })
     .catch(err => console.error(err));
@@ -260,9 +273,7 @@ function Load_Details() {
 
 function Load_Courses() {
     fetch('backend/api/get-courses.php') 
-
     .then(response => response.json())
-
     .then(data => {
         const List = document.getElementById('course-list');
         const Count = document.getElementById('course-count');
@@ -270,7 +281,7 @@ function Load_Courses() {
         if (data.status === 'success' && data.data.length > 0) {
             List.innerHTML = '';
             
-            Count.textContent = `Hiển thị ${data.data.length} môn học`;
+            Count.innerHTML = `<i class="bi bi-database me-1"></i> Hiển thị ${data.data.length} môn học`;
 
             data.data.forEach(course => {
                 const Vip = course.is_vip == 1; 
@@ -300,18 +311,18 @@ function Load_Courses() {
                     <div class="card h-100 border-0 shadow-sm hover-up rounded-4">
                         <div class="card-body p-4 d-flex flex-column" style="min-height: 250px;">
                             <div class="d-flex justify-content-between align-items-start mb-3">
-                                <span class="badge bg-light text-primary border border-primary-subtle rounded-pill px-3"> 
-                                    ${course.subject_code}
+                                <span class="badge bg-light text-primary border border-primary-subtle rounded-pill px-3 course-code"> 
+                                    ${XSS_Defend(course.subject_code)}
                                 </span>
                                 ${Vip ? '<span class="badge bg-warning text-dark rounded-pill"><i class="bi bi-star-fill"></i> VIP</span>' : ''}
                             </div>
                             
-                            <h5 class="fw-bold text-dark mb-2 text-truncate" title="${course.subject_name}"> 
-                                ${course.subject_name}
+                            <h5 class="fw-bold text-dark mb-2 text-truncate course-name" title="${XSS_Defend(course.subject_name)}"> 
+                                ${XSS_Defend(course.subject_name)}
                             </h5>
                             
                             <p class="text-muted small mb-4 flex-grow-1"> 
-                                ${course.category} • ${course.credits} TC
+                                <span class="course-cat">${XSS_Defend(course.category)}</span> • ${XSS_Defend(course.credits)} TC
                             </p>
                             
                             <div class="mt-auto">
@@ -332,6 +343,7 @@ function Load_Courses() {
         }
     })
     .catch(error => {
-        document.getElementById('course-list').innerHTML = '<div class="col-12 text-center text-danger">Lỗi tải dữ liệu!</div>';
+        const list = document.getElementById('course-list');
+        if(list) list.innerHTML = '<div class="col-12 text-center text-danger">Lỗi tải dữ liệu!</div>';
     });
 }

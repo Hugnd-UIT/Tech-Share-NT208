@@ -28,7 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             }
         }
     } catch (PDOException $e) {
-        $response['message'] = "Lỗi hệ thống: ". $e->getMessage();
+        error_log("Courses Error: " . $e->getMessage()); 
+        $response['message'] = "Lỗi hệ thống: Đã có sự cố xảy ra, vui lòng thử lại sau.";
     }
 }
 

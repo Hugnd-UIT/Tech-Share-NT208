@@ -31,7 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $response['code'] = $result["transaction_code"];
             }
         } catch(Exception $e) {
-            $response['message'] = "Lỗi hệ thống: ". $e->getMessage();
+            error_log("Payment Error: " . $e->getMessage()); 
+            $response['message'] = "Lỗi hệ thống: Đã có sự cố xảy ra, vui lòng thử lại sau.";
         }
     }
 }    

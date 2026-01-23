@@ -8,6 +8,20 @@ $response = ['status' => 'error', 'message' => 'Lỗi không xác định'];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $info = $_POST["email"] ?? "";
     $password = $_POST["password"] ?? "";
+    $captcha = $_POST["captcha"] ?? "";
+
+    if (empty($captcha)) {
+        $response['message'] = "Vui lòng nhập mã captcha!";
+        echo json_encode($response);
+        exit;
+    }
+
+    if (!isset($_SESSION['captcha_code']) || strtoupper($captcha) !== $_SESSION['captcha_code']) {
+        $response['message'] = "Mã captcha không đúng!";
+        unset($_SESSION['captcha_code']);
+        echo json_encode($response);
+        exit; 
+    }
 
     if (empty($info) || empty($password)) {
         $response['message'] = "Vui lòng nhập đầy đủ thông tin!";
@@ -34,7 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $response['message'] = "Tài khoản hoặc mật khẩu không đúng!";
             }
         } catch (Exception $e) {
-            $response['message'] = "Lỗi hệ thống: " . $e->getMessage();
+            error_log("Login Error: " . $e->getMessage()); 
+            $response['message'] = "Lỗi hệ thống: Đã có sự cố xảy ra, vui lòng thử lại sau.";
         }
     }
 }
