@@ -1,9 +1,8 @@
 <link rel="stylesheet" href="frontend/assets/css/custom-courses.css">
 
-<div class="bg-light-subtle" style="min-height: 100vh;">
+<div class="bg-light-subtle" style="min-height: 10vh;">
     <div class="container py-5">
         <div class="row g-4">
-            
             <div class="col-lg-3">
                 <div class="card border-0 shadow-sm rounded-4 sticky-top" style="top: 100px;">
                     <div class="card-body p-4">
@@ -11,7 +10,6 @@
                             <i class="bi bi-funnel-fill text-primary me-2 fs-5"></i>
                             <h6 class="fw-bold text-uppercase text-dark mb-0 ls-1">Bộ lọc tìm kiếm</h6>
                         </div>
-                        
                         <div class="mb-4">
                             <div class="input-group">
                                 <input 
@@ -31,30 +29,24 @@
                                 </button>
                             </div>
                         </div>
-
                         <div class="mb-4">
                             <label class="fw-bold small text-uppercase text-muted mb-3 d-block" style="letter-spacing: 1px;">Phân loại môn</label>
-                            
                             <div class="form-check">
                                 <input class="form-check-input filter-checkbox" type="checkbox" value="Đại cương" id="cat1">
                                 <label class="form-check-label text-muted" for="cat1">Đại cương</label>
                             </div>
-                            
                             <div class="form-check">
                                 <input class="form-check-input filter-checkbox" type="checkbox" value="Cơ sở ngành" id="cat2">
                                 <label class="form-check-label text-muted" for="cat2">Cơ sở ngành</label>
                             </div>
-                            
                             <div class="form-check">
                                 <input class="form-check-input filter-checkbox" type="checkbox" value="Chuyên ngành" id="cat3">
                                 <label class="form-check-label text-muted" for="cat3">Chuyên ngành</label>
                             </div>
-
                             <div class="form-check mb-2">
                                 <input class="form-check-input filter-checkbox" type="checkbox" value="Đồ án" id="cat4">
                                 <label class="form-check-label text-muted" for="cat4">Đồ án</label>
                             </div>
-
                             <div class="mt-3">
                                 <button id="apply-filter-btn" class="btn btn-outline-primary w-100 rounded-pill fw-bold btn-sm">
                                     <i class="bi bi-funnel-fill me-1"></i> Lọc Môn Học
@@ -64,7 +56,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-lg-9">
                 <div class="d-flex justify-content-between align-items-center mb-4 ps-2">
                     <h4 class="fw-bold mb-0 text-dark">Danh sách môn học</h4>
@@ -72,7 +63,6 @@
                         <i class="bi bi-database me-1"></i> Đang tải dữ liệu...
                     </span>
                 </div>
-
                 <div class="row g-4" id="course-list">
                     <div class="col-12 text-center py-5">
                         <div class="spinner-border" role="status">
@@ -85,5 +75,6 @@
         </div>
     </div>
 </div>
+
 <script src="frontend/assets/javascript/filter.js"></script>
 <script src="frontend/javascript/get.js"></script>

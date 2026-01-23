@@ -1,4 +1,4 @@
-function toggle_password(element, Id) {
+function toggle(element, Id) {
     const input = document.getElementById(Id);
     const eyeOpen = element.querySelector('.eye-open');
     const eyeClosed = element.querySelector('.eye-closed');

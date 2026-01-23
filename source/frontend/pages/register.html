@@ -1,34 +1,27 @@
-<link rel="stylesheet" href="frontend/assets/css/custom-register.css">
+<link rel="stylesheet" href="frontend/assets/css/custom-login.css">
 
 <main class="auth-minimal-wrapper">
     <div class="auth-minimal-inner">
         <div class="minimal-card-wrapper">
             <div class="card mb-4 mt-5 mx-4 mx-sm-0 position-relative">
-                
                 <div class="wd-50 bg-white p-2 rounded-circle shadow-lg position-absolute translate-middle top-0 start-50">
                     <img src="frontend/assets/image/logo.png" alt="Logo" class="img-fluid">
                 </div>
-
                 <div class="card-body p-sm-5 pt-5">
                     <div class="text-center mt-3">
                         <h2 class="fs-20 fw-bolder mb-2">Đăng Ký</h2>
                         <p class="fs-12 fw-medium text-muted">Tạo tài khoản TechShare để tham gia cộng đồng.</p>
                     </div>
-                    
                     <form id="Register" class="w-100 mt-4">
-                        
                         <div class="mb-4">
                             <input type="text" name="fullname" class="form-control" placeholder="Họ và Tên" required>
                         </div>
-                        
                         <div class="mb-4">
                             <input type="email" name="email" class="form-control" placeholder="Địa chỉ Email" required>
                         </div>
-                        
                         <div class="mb-4">
                             <input type="text" name="username" class="form-control" placeholder="Tên đăng nhập" required>
                         </div>
-                        
                         <div class="mb-4 position-relative">
                             <div class="position-relative">
                                 <input 
@@ -41,13 +34,12 @@
                                 >
                                 <span class="password-toggle position-absolute top-50 end-0 translate-middle-y me-3" 
                                       style="cursor: pointer; color: #0052d4;" 
-                                      onclick="toggle_password(this, 'reg-password')">
+                                      onclick="toggle(this, 'reg-password')">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eye-open d-none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eye-closed"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
                                 </span>
                             </div>
                         </div>
-                        
                         <div class="mb-4 position-relative">
                             <div class="position-relative">
                                 <input 
@@ -60,13 +52,12 @@
                                 >
                                 <span class="password-toggle position-absolute top-50 end-0 translate-middle-y me-3" 
                                       style="cursor: pointer; color: #0052d4;" 
-                                      onclick="toggle_password(this, 'reg-confirm-password')">
+                                      onclick="toggle(this, 'reg-confirm-password')">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eye-open d-none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eye-closed"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
                                 </span>
                             </div>
                         </div>
-                        
                         <div class="mt-4">
                             <div class="custom-control custom-checkbox mb-2">
                                 <input type="checkbox" name="newsletter" class="custom-control-input" id="receiveMail">
@@ -79,12 +70,10 @@
                                 </label>
                             </div>
                         </div>
-                        
                         <div class="mt-5">
                             <button type="submit" class="btn btn-lg btn-primary w-100 fs-14">ĐĂNG KÝ NGAY</button>
                         </div>
                     </form>
-                    
                     <div class="mt-4 text-muted text-center fs-12">
                         <span>Đã có tài khoản?</span>
                         <a href="index.php?page=login" class="fw-bold text-primary text-decoration-none">Đăng nhập</a>
@@ -96,4 +85,4 @@
 </main>
 
 <script src="frontend/javascript/auth.js"></script>
-<script src="frontend/assets/javascript/toggle-password.js"></script>
+<script src="frontend/assets/javascript/toggle.js"></script>
