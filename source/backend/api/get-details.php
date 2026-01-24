@@ -1,4 +1,5 @@
 <?php
+session_set_cookie_params(['lifetime' => 86400, 'path' => '/', 'domain' => '', 'secure' => false, 'httponly' => true, 'samesite' => 'Lax']);
 session_start();
 header("Content-Type: application/json");
 require_once '../configure/database.php';

@@ -10,18 +10,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarContent">
-            <form class="d-flex mx-auto my-3 my-lg-0 w-100 search-cyber" style="max-width: 500px;" role="search">
-                <div class="input-group">
-                    <span class="input-group-text border-0 ps-3 rounded-start-pill text-muted">
-                        <i class="bi bi-search"></i>
-                    </span>
-                    <input class="form-control border-0 py-2 rounded-end-pill" 
-                           type="search" 
-                           placeholder="Tìm kiếm khóa học..." 
-                           style="box-shadow: none; outline: none;">
-                </div>
-            </form>
-            <div class="d-flex align-items-center gap-2 justify-content-end">
+            <div class="d-flex  mx-auto my-3 my-lg-0 w-100 align-items-center gap-2 justify-content-end">
                 <a href="index.php" class="nav-link px-2">Trang chủ</a>
                 <a href="index.php?page=courses" class="nav-link px-2">Khóa học</a>
                 <div class="vr d-none d-lg-block mx-2 opacity-25"></div>

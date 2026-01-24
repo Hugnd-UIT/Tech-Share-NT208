@@ -182,14 +182,15 @@ function Load_Details() {
         const titleEl = document.getElementById('viewer-title');
         if(titleEl) titleEl.innerHTML = `<i class="bi bi-book-half me-2"></i> ${XSS_Defend(doc.title)}`;
         
+        const api = `../backend/api/get-download.php?id=${doc.id}`;
+
         const viewer = document.getElementById('viewer-content');
-        if(viewer) viewer.innerHTML = `<iframe src="${doc.file_path}" style="width:100%; height:80vh; border:none;"></iframe>`;
+        if(viewer) viewer.innerHTML = `<iframe src="${api}&action=view" style="width:100%; height:80vh; border:none;"></iframe>`;
 
         const btnDown = document.getElementById('btn-download');
         if(btnDown) {
             btnDown.classList.remove('d-none');
-            btnDown.href = doc.file_path;
-            btnDown.setAttribute('download', '');
+            btnDown.href = `${api}&action=download`;
         }
     };
 

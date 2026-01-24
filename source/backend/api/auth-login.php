@@ -1,4 +1,5 @@
 <?php
+session_set_cookie_params(['lifetime' => 86400, 'path' => '/', 'domain' => '', 'secure' => false, 'httponly' => true, 'samesite' => 'Lax']);
 session_start();
 header('Content-Type: application/json');
 require_once '../configure/database.php';
@@ -33,6 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($result && password_verify($password, $result["password"])) {
+                session_regenerate_id(true);
+                
                 $_SESSION['user_id'] = $result['id'];
                 $_SESSION['user_name'] = $result['username'];
 
