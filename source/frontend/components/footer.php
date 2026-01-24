@@ -37,12 +37,6 @@
             <div class="col-md-4 mb-4">
                 <h6 class="fw-bold mb-3 text-uppercase text-warning">Bản tin</h6>
                 <p class="small opacity-75">Đăng ký để nhận thông báo về tài liệu mới nhất.</p>
-                <form class="input-group mt-3">
-                    <input type="email" class="form-control" placeholder="Email của bạn..." required>
-                    <button class="btn btn-primary newsletter-btn" type="submit">
-                        <i class="bi bi-send-fill text-white"></i>
-                    </button>
-                </form>
             </div>
         </div>
         <hr class="border-secondary opacity-25 my-4">

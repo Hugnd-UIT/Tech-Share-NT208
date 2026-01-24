@@ -70,7 +70,18 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="mt-5">
+                        <br>
+                        <div class="form-outline mb-4">
+                            <div class="d-flex align-items-center gap-2">
+                                <input type="text" name="captcha" id="captcha-input" class="form-control form-control-lg" 
+                                    placeholder="Nhập mã captcha" required autocomplete="off" />
+                                <img src="backend/api/get-captcha.php" id="captcha-img" 
+                                    style="cursor:pointer; border: 1px solid #ccc; border-radius: 5px; height: 48px;" 
+                                    onclick="this.src='backend/api/get-captcha.php?t='+new Date().getTime()"
+                                    title="Click để đổi mã khác">
+                            </div>
+                        </div>
+                        <div>
                             <button type="submit" class="btn btn-lg btn-primary w-100 fs-14">ĐĂNG KÝ NGAY</button>
                         </div>
                     </form>

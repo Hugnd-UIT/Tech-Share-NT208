@@ -1,4 +1,5 @@
 <?php
+session_set_cookie_params(['lifetime' => 86400, 'path' => '/', 'domain' => '', 'secure' => false, 'httponly' => true, 'samesite' => 'Lax']);
 session_start();
 header('Content-Type: application/json');
 require_once "../configure/database.php";
@@ -19,10 +20,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $conn->prepare($query);
         $stmt->execute([':email' => $email]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$result) {
+            $response['message'] = 'Email này chưa đăng ký tài khoản!';
+            echo json_encode($response);
+            exit; 
+        }
         
         $user = htmlspecialchars($result['username']);
         $token = bin2hex(random_bytes(32));
         $hash_token = hash('sha256', $token);
+        $link = "http://localhost/index.php?page=verify&token=" . $token;
+        // $link = " https://sheathy-reparative-judie.ngrok-free.dev/index.php?page=verify&token=" . $token;
 
         $query = "UPDATE users SET reset_token = :token, reset_expire = DATE_ADD(NOW(), INTERVAL 15 MINUTE) WHERE email = :email";
         $stmt = $conn->prepare($query);
@@ -41,14 +50,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail->setFrom(getenv('SMTP_EMAIL'), "Tech Share");
         $mail->addAddress($email);
         $mail->Subject = 'Đổi mật khẩu của bạn';
-
+        
         $mail->Body = "
-        <h4>Hi $user</h4>
-        <p>As you have requested for reset password instructions, here they are, please follow the URL:</p>
-
-        <a href='http://localhost/index.php?page=verify&token=$token'>
-            Reset password
-        </a>
+        <div style='font-family: Arial, sans-serif; line-height: 1.6;'>
+            <h3>Xin chào $user,</h3>
+            <p>Bạn (hoặc ai đó) đã yêu cầu đặt lại mật khẩu cho tài khoản Tech Share.</p>
+            <p>Vui lòng nhấn vào nút bên dưới để tạo mật khẩu mới (Link hết hạn sau 15 phút):</p>
+            <p>
+                <a href='$link' style='background-color: #0d6efd; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;'>Đặt lại mật khẩu</a>
+            </p>
+            <p>Hoặc truy cập link sau: <a href='$link'>$link</a></p>
+            <p>Nếu bạn không yêu cầu, vui lòng bỏ qua email này.</p>
+        </div>
         ";
         
         if ($mail->send()) {

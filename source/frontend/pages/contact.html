@@ -76,6 +76,17 @@
                                         <label class="form-label small fw-bold text-secondary">Nội dung</label>
                                         <textarea id="content" name="content" class="form-control" rows="5" placeholder="Bạn cần hỗ trợ gì?" required></textarea>
                                     </div>
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label small fw-bold text-secondary">Captcha</label>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <input type="text" name="captcha" id="captcha-input" class="form-control form-control-lg" 
+                                                placeholder="Nhập mã captcha" required autocomplete="off" />
+                                            <img src="backend/api/get-captcha.php" id="captcha-img" 
+                                                style="cursor:pointer; border: 1px solid #ccc; border-radius: 5px; height: 48px;" 
+                                                onclick="this.src='backend/api/get-captcha.php?t='+new Date().getTime()"
+                                                title="Click để đổi mã khác">
+                                        </div>
+                                    </div>
                                     <div class="col-12 mt-4">
                                         <button type="submit" class="btn btn-primary rounded-pill px-5 py-3 fw-bold shadow-sm w-100 w-md-auto">
                                             <i class="bi bi-send-fill me-2"></i> Gửi Ngay

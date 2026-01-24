@@ -1,4 +1,5 @@
 <?php
+session_set_cookie_params(['lifetime' => 86400, 'path' => '/', 'domain' => '', 'secure' => false, 'httponly' => true, 'samesite' => 'Lax']);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -16,9 +17,23 @@ $response = ['status' => 'error', 'message' => 'Lỗi không xác định'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = htmlspecialchars($_POST['name'] ?? "");
-    $email = htmlspecialchars($_POST["email"] ?? "");
-    $topic = htmlspecialchars($_POST["topic"] ?? "");
-    $content = htmlspecialchars($_POST['message'] ?? "");
+    $email = htmlspecialchars($_POST['email'] ?? "");
+    $topic = htmlspecialchars($_POST['topic'] ?? "");
+    $content = htmlspecialchars($_POST['content'] ?? "");
+    $captcha = $_POST["captcha"] ?? "";
+
+    if (empty($captcha)) {
+        $response['message'] = "Vui lòng nhập mã captcha!";
+        echo json_encode($response);
+        exit;
+    }
+
+    if (!isset($_SESSION['captcha_code']) || strtoupper($captcha) !== $_SESSION['captcha_code']) {
+        $response['message'] = "Mã captcha không đúng!";
+        unset($_SESSION['captcha_code']);
+        echo json_encode($response);
+        exit; 
+    }
 
     try {
         $mail = new PHPMailer();
@@ -26,14 +41,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail->isSMTP();
         $mail->Host = "smtp.gmail.com";
         $mail->SMTPAuth = true;
-        $mail->setFrom(getenv('SMTP_EMAIL'), "Tech Share");
-        $mail->addAddress(getenv('SMTP_EMAIL'));
+        $mail->Username = getenv('SMTP_EMAIL'); 
+        $mail->Password = getenv('SMTP_PASSWORD');
         $mail->SMTPSecure = "tls";
         $mail->Port = 587;
-        $mail->setFrom("hungnd.attt2024@gmail.com", "Tech Share");
-        $mail->addAddress("hungnd.attt2024@gmail.com");
-        $mail->addReplyTo($email);
-        $mail->Subject = 'Liên hệ từ website';
+        $mail->setFrom(getenv('SMTP_EMAIL'), "Tech Share Contact");
+        $mail->addAddress(getenv('SMTP_EMAIL'));
+        $mail->addReplyTo($email, $name);
+        $mail->Subject = "Liên hệ mới từ website";
+
+        if ($topic === '1') {
+            $topic = 'Đóng góp tài liệu';
+        } else if ($topic === '2') {
+            $topic = 'Báo lỗi website';
+        } else if ($topic === '3') {
+            $topic = 'Hỗ trợ tài khoản VIP';
+        } else {
+            $topic = 'Khác';
+        }
 
         $mail->Body = "
         Tên: $name

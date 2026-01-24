@@ -1,4 +1,5 @@
 <?php
+session_set_cookie_params(['lifetime' => 86400, 'path' => '/', 'domain' => '', 'secure' => false, 'httponly' => true, 'samesite' => 'Lax']);
 session_start();
 header('Content-Type: application/json');
 require_once '../configure/database.php';
@@ -10,11 +11,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $username = $_POST["username"] ?? "";
     $full_name = $_POST["fullname"] ?? "";
     $password = $_POST["password"] ?? "";
+    $captcha = $_POST["captcha"] ?? "";
     $comfirm_password = $_POST["confirm_password"] ?? "";
 
+    if (empty($captcha)) {
+        $response['message'] = "Vui lòng nhập mã captcha!";
+        echo json_encode($response);
+        exit;
+    } 
+    
+    if (!isset($_SESSION['captcha_code']) || strtoupper($captcha) !== $_SESSION['captcha_code']) {
+        $response['message'] = "Mã captcha không đúng!";
+        unset($_SESSION['captcha_code']);
+        echo json_encode($response);
+        exit; 
+    }
+    
     if (empty($email) || empty($username) || empty($password)) {
         $response['message'] = "Vui lòng nhập đầy đủ thông tin!";
-    } elseif ($password !== $comfirm_password) {
+    } else if ($password !== $comfirm_password) {
         $response['message'] = "Mật khẩu xác nhận không khớp!";
     } else {
         try {
