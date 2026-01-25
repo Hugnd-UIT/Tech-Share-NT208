@@ -15,7 +15,7 @@ function Handle_Payment() {
         Discover_Form.addEventListener('click', function(e) {
             e.preventDefault();
 
-            fetch('./backend/api/auth-payment.php', {
+            fetch('./backend/api/payment.php', {
                 method: 'POST'
             })
             .then(response => response.json())
@@ -44,7 +44,7 @@ function Handle_Verify() {
             const token = new URLSearchParams(window.location.search).get('token');
             Data.append('token', token); 
 
-            fetch('./backend/api/auth-verify.php', {
+            fetch('./backend/api/verify.php', {
                 method: 'POST',
                 body: Data
             })
@@ -72,7 +72,7 @@ function Handle_Reset() {
             e.preventDefault();
             const Data = new FormData(this);
 
-            fetch('./backend/api/auth-reset.php', {
+            fetch('./backend/api/reset.php', {
                 method: 'POST',
                 body: Data
             })
@@ -100,7 +100,7 @@ function Handle_Contact() {
             e.preventDefault();
             const Data = new FormData(this);
 
-            fetch('./backend/api/auth-contact.php', {
+            fetch('./backend/api/contact.php', {
                 method: 'POST',
                 body: Data
             })
@@ -128,7 +128,7 @@ function Handle_Login() {
             e.preventDefault(); 
             const Data = new FormData(this);
 
-            fetch('./backend/api/auth-login.php', {
+            fetch('./backend/api/login.php', {
                 method: 'POST',
                 body: Data
             })
@@ -155,7 +155,7 @@ function Handle_Logout() {
             e.preventDefault();
             alert('Bạn có chắc chắn muốn đăng xuất?');
 
-            fetch('./backend/api/auth-logout.php', {
+            fetch('./backend/api/logout.php', {
                 method: 'POST'
             })
             .then(response => response.json())
@@ -182,7 +182,7 @@ function Handle_Register() {
             
             const Data = new FormData(this);
             
-            fetch('./backend/api/auth-register.php', {
+            fetch('./backend/api/register.php', {
                 method: 'POST',
                 body: Data
             })

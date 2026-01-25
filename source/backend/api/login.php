@@ -1,6 +1,4 @@
 <?php
-session_set_cookie_params(['lifetime' => 86400, 'path' => '/', 'domain' => '', 'secure' => false, 'httponly' => true, 'samesite' => 'Lax']);
-session_start();
 header('Content-Type: application/json');
 require_once '../configure/database.php';
 
@@ -10,6 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $info = $_POST["email"] ?? "";
     $password = $_POST["password"] ?? "";
     $captcha = $_POST["captcha"] ?? "";
+    $remember = (isset($_POST["remember"]) && ($_POST["remember"] === "true" || $_POST["remember"] === "1")) ? true : false;
 
     if (empty($captcha)) {
         $response['message'] = "Vui lòng nhập mã captcha!";
@@ -33,9 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute([':info' => $info]);
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if ($result && password_verify($password, $result["password"])) {
-                session_regenerate_id(true);
-                
+            if ($result && password_verify($password, $result["password"])) {   
+                session_regenerate_id(true);             
                 $_SESSION['user_id'] = $result['id'];
                 $_SESSION['user_name'] = $result['username'];
 
@@ -44,6 +42,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 } else {
                     $_SESSION['is_vip'] = false;
                 } 
+                
+                if ($remember) {
+                    $params = session_get_cookie_params();
+                    setcookie(session_name(), session_id(), ['expires' => time() + 2592000, 'path' => $params['path'], 'domain' => $params['domain'], 'secure' => $params['secure'], 'httponly' => $params['httponly'], 'samesite' => $params['samesite']]);                
+                }
 
                 $response['status'] = 'success';
                 $response['message'] = 'Đăng nhập thành công!';

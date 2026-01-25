@@ -75,9 +75,9 @@
                             <div class="d-flex align-items-center gap-2">
                                 <input type="text" name="captcha" id="captcha-input" class="form-control form-control-lg" 
                                     placeholder="Nhập mã captcha" required autocomplete="off" />
-                                <img src="backend/api/get-captcha.php" id="captcha-img" 
+                                <img src="backend/api/captcha.php" id="captcha-img" 
                                     style="cursor:pointer; border: 1px solid #ccc; border-radius: 5px; height: 48px;" 
-                                    onclick="this.src='backend/api/get-captcha.php?t='+new Date().getTime()"
+                                    onclick="this.src='backend/api/captcha.php?t='+new Date().getTime()"
                                     title="Click để đổi mã khác">
                             </div>
                         </div>

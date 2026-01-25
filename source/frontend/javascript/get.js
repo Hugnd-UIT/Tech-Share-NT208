@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const Detail = document.getElementById('sidebar-list');
-    const Course = document.getElementById('course-list');
-    const Profile = document.getElementById('account-general');
+    const Details = document.getElementById('Details');
+    const Courses = document.getElementById('Courses');
+    const Profile = document.getElementById('Profile');
 
-    if (Detail) {
+    if (Details) {
         Load_Details();
     } 
     
-    if (Course) {
+    if (Courses) {
         Load_Courses();
     }
 
@@ -33,7 +33,7 @@ function Load_Profile() {
     const badge = document.getElementById('vip-badge-container');
     const membership = document.getElementById('membership-content');
 
-    fetch('backend/api/get-profile.php')
+    fetch('backend/api/profile.php')
     .then(response => response.json())
     .then(data => {
         if (data.status === 'success') {
@@ -166,7 +166,7 @@ function Load_Profile() {
 }
 
 function Load_Details() {
-    const Sidebar = document.getElementById('sidebar-list');
+    const sidebar = document.getElementById('sidebar-list');
     
     window.View_Document = function(index) {
         const doc = window.currentDocuments[index];
@@ -182,7 +182,7 @@ function Load_Details() {
         const titleEl = document.getElementById('viewer-title');
         if(titleEl) titleEl.innerHTML = `<i class="bi bi-book-half me-2"></i> ${XSS_Defend(doc.title)}`;
         
-        const api = `../backend/api/get-download.php?id=${doc.id}`;
+        const api = `../backend/api/download.php?id=${doc.id}`;
 
         const viewer = document.getElementById('viewer-content');
         if(viewer) viewer.innerHTML = `<iframe src="${api}&action=view" style="width:100%; height:80vh; border:none;"></iframe>`;
@@ -197,11 +197,11 @@ function Load_Details() {
     const id = new URLSearchParams(window.location.search).get('id');
 
     if (!id) {
-        Sidebar.innerHTML = '<div class="text-danger p-3">Không tìm thấy ID!</div>';
+        sidebar.innerHTML = '<div class="text-danger p-3">Không tìm thấy ID!</div>';
         return;
     }
 
-    fetch(`backend/api/get-details.php?id=${id}`)
+    fetch(`backend/api/details.php?id=${id}`)
     .then(response => response.json())
     .then(data => {
         if (data.status === 'success') {
@@ -212,11 +212,11 @@ function Load_Details() {
                 if(codeEl) codeEl.textContent = data.subject.subject_code;
             }
 
-            Sidebar.innerHTML = ''; 
+            sidebar.innerHTML = ''; 
             window.currentDocuments = data.data; 
 
             if (!data.data || data.data.length === 0) {
-                Sidebar.innerHTML = '<div class="p-3 text-muted">Chưa có tài liệu.</div>';
+                sidebar.innerHTML = '<div class="p-3 text-muted">Chưa có tài liệu.</div>';
                 return;
             }
 
@@ -242,7 +242,7 @@ function Load_Details() {
             });
 
             for (const [Group_Name, items] of Object.entries(Groups)) {
-                Sidebar.innerHTML += `
+                sidebar.innerHTML += `
                     <div class="list-group-folder text-truncate" title="${Group_Name.replace(/<[^>]*>/g, '')}">
                         <i class="bi bi-folder2-open me-2 text-warning"></i> ${Group_Name}
                     </div>
@@ -251,7 +251,7 @@ function Load_Details() {
                 items.forEach(item => {
                     let Icon = item.file_type === 'pdf' ? 'bi-file-pdf-fill text-danger' : 'bi-file-earmark-code-fill text-primary';
                     
-                    Sidebar.innerHTML += `
+                    sidebar.innerHTML += `
                         <button class="list-group-item list-group-item-action" 
                                 onclick="View_Document(${item.originalIndex})" 
                                 id="doc-btn-${item.originalIndex}">
@@ -266,14 +266,14 @@ function Load_Details() {
             if(data.data.length > 0) window.View_Document(0);
 
         } else {
-            Sidebar.innerHTML = `<div class="p-3 text-danger">${XSS_Defend(data.message)}</div>`;
+            sidebar.innerHTML = `<div class="p-3 text-danger">${XSS_Defend(data.message)}</div>`;
         }
     })
     .catch(err => console.error(err));
 }
 
 function Load_Courses() {
-    fetch('backend/api/get-courses.php') 
+    fetch('backend/api/courses.php') 
     .then(response => response.json())
     .then(data => {
         const List = document.getElementById('course-list');
