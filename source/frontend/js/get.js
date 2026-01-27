@@ -1,21 +1,3 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const Details = document.getElementById('Details');
-    const Courses = document.getElementById('Courses');
-    const Profile = document.getElementById('Profile');
-
-    if (Details) {
-        Load_Details();
-    } 
-    
-    if (Courses) {
-        Load_Courses();
-    }
-
-    if (Profile) {
-        Load_Profile();
-    }
-});
-
 function XSS_Defend(text) {
     if (!text) return text;
     return String(text)
@@ -89,7 +71,7 @@ function Load_Profile() {
                             <div class="d-flex justify-content-center">
                                 <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-4 py-2 d-inline-flex align-items-center">
                                     <i class="bi bi-tag-fill me-2 fs-6"></i> 
-                                    <span style="transform: translateY(1px);">Giá trị: 50.000đ</span>
+                                    <span class="text-primary style="transform: translateY(1px);">Giá trị: 50.000đ</span>
                                 </span>
                             </div>
                         </div>
@@ -148,7 +130,7 @@ function Load_Profile() {
                             <i class="bi bi-box-seam display-4 text-muted mb-3"></i>
                             <h5 class="fw-bold">Bạn đang dùng gói miễn phí</h5>
                             <p class="text-muted small mb-4">Nâng cấp lên VIP để mở khóa toàn bộ tài liệu và tính năng.</p>
-                            <a href="index.php?page=discover" class="btn btn-outline-primary rounded-pill fw-bold w-100">
+                            <a href="#discover" class="btn btn-outline-primary rounded-pill fw-bold w-100">
                                 <i class="bi bi-gem me-2"></i>Nâng cấp VIP
                             </a>
                         </div>
@@ -194,7 +176,7 @@ function Load_Details() {
         }
     };
 
-    const id = new URLSearchParams(window.location.search).get('id');
+    const id = new URLSearchParams(window.location.hash.split('?')[1]).get('id');
 
     if (!id) {
         sidebar.innerHTML = '<div class="text-danger p-3">Không tìm thấy ID!</div>';
@@ -292,17 +274,17 @@ function Load_Courses() {
                 if (Vip) {
                     if (data.is_vip === false)
                     Action_Button = `
-                        <a href="index.php?page=discover" class="btn btn-warning w-100 fw-bold rounded-pill text-dark shadow-sm">
+                        <a href="#discover" class="btn btn-warning w-100 fw-bold rounded-pill text-dark shadow-sm">
                             <i class="bi bi-lock-fill me-1"></i> Mở khóa ngay
                         </a>`;
                     else 
                     Action_Button = `
-                        <a href="index.php?page=details&id=${course.id}" class="btn btn-outline-primary w-100 fw-bold rounded-pill">
+                        <a href="#details?id=${course.id}" class="btn btn-outline-primary w-100 fw-bold rounded-pill">
                             <i class="bi bi-folder2-open me-1"></i> Xem tài liệu
                         </a>`;
                 } else {
                     Action_Button = `
-                        <a href="index.php?page=details&id=${course.id}" class="btn btn-outline-primary w-100 fw-bold rounded-pill">
+                        <a href="#details?id=${course.id}" class="btn btn-outline-primary w-100 fw-bold rounded-pill">
                             <i class="bi bi-folder2-open me-1"></i> Xem tài liệu
                         </a>`;
                 }
@@ -336,8 +318,8 @@ function Load_Courses() {
                 List.innerHTML += html;
             });
 
-            if (typeof filter_logic === 'function') {
-                filter_logic();
+            if (typeof filter === 'function') {
+                filter();
             }
         } else {
             List.innerHTML = '<div class="col-12 text-center text-muted">Chưa có môn học nào.</div>';

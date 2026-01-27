@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS users (
     email VARCHAR(100) NOT NULL UNIQUE, 
     password VARCHAR(255) NOT NULL,
     full_name NVARCHAR(100),
-    avatar VARCHAR(255) DEFAULT 'default-avatar.png', 
+    avatar VARCHAR(255) DEFAULT 'default-avt.png', 
     role ENUM('admin', 'student') DEFAULT 'student',
     vip_expiration_date DATETIME DEFAULT NULL,
     reset_token VARCHAR(255) DEFAULT NULL,

@@ -1,13 +1,3 @@
-document.addEventListener('DOMContentLoaded', function() {
-    Handle_Register();
-    Handle_Contact();
-    Handle_Verify();
-    Handle_Payment();
-    Handle_Logout();
-    Handle_Login();
-    Handle_Reset();
-});
-
 function Handle_Payment() {
     const Discover_Form = document.querySelector('#Discover');
 
@@ -21,10 +11,10 @@ function Handle_Payment() {
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'success') {
-                    window.location.href = 'index.php?page=payment&code=' + encodeURIComponent(data.code);
+                    window.location.href = '#payment?code=' + encodeURIComponent(data.code);
                 } else {
                     alert(data.message);
-                    window.location.href = 'index.php?page=login';
+                    window.location.href = '#login';
                 }
             })
             .catch(error => {
@@ -41,7 +31,7 @@ function Handle_Verify() {
         Comfirm_Form.addEventListener('submit', function(e) {
             e.preventDefault();
             const Data = new FormData(this);
-            const token = new URLSearchParams(window.location.search).get('token');
+            const token = new URLSearchParams(window.location.hash.split('?')[1]).get('token');
             Data.append('token', token); 
 
             fetch('./backend/api/verify.php', {
@@ -52,7 +42,7 @@ function Handle_Verify() {
             .then(data => {
                 if (data.status === 'success') {
                     alert(data.message);
-                    window.location.href = 'index.php?page=login';
+                    window.location.href = '#login';
                 } else {
                     alert(data.message);
                 }
@@ -80,7 +70,7 @@ function Handle_Reset() {
             .then(data => {
                 if (data.status === 'success') {
                     alert(data.message);
-                    window.location.href = 'index.php?page=home';
+                    window.location.href = '#home';
                 } else {
                     alert(data.message);
                 }
@@ -135,7 +125,7 @@ function Handle_Login() {
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'success') {
-                    window.location.href = 'index.php?page=home';
+                    window.location.href = '#home';
                 } else {
                     alert(data.message);
                 }
@@ -161,7 +151,7 @@ function Handle_Logout() {
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'success') {
-                    window.location.href = 'index.php?page=home';
+                    window.location.href = '#home';
                 } else {
                     alert(data.message);
                 }
@@ -190,7 +180,7 @@ function Handle_Register() {
             .then(data => {
                 if (data.status === 'success') {
                     alert(data.message);
-                    window.location.href = 'index.php?page=login';
+                    window.location.href = '#login';
                 } else {
                     alert(data.message);
                 }

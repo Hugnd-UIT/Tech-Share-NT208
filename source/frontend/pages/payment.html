@@ -80,7 +80,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="index.php?page=home" class="btn btn-cyber btn-lg w-100 rounded-pill py-3 shadow-lg">
+                        <a href="#home" class="btn btn-cyber btn-lg w-100 rounded-pill py-3 shadow-lg">
                             <i class="bi bi-check2-circle me-2"></i> TÔI ĐÃ CHUYỂN KHOẢN
                         </a>
                     </div>
@@ -89,27 +89,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        let code = new URLSearchParams(window.location.search).get("code");
-        
-        const content = document.getElementById('content-display');
-        const qr = document.getElementById('qr-image');
-
-        const bank = "MB";
-        const accountNo = "0388267745";
-        const accountName = "NGUYEN DUY HUNG";
-        const amount = "50000";
-
-        if (!code) {
-            content.innerText = 'LỖI: THIẾU MÃ GD';
-            content.style.color = 'red';
-            content.style.borderColor = 'red';
-        } else {
-            content.innerText = code;
-
-            qr.src = `https://img.vietqr.io/image/${bank}-${accountNo}-compact2.png?amount=${amount}&addInfo=${encodeURIComponent(code)}&accountName=${encodeURIComponent(accountName)}`;
-        }
-    });
-</script>
