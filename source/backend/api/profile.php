@@ -1,10 +1,8 @@
 <?php
-session_set_cookie_params(['lifetime' => 86400, 'path' => '/', 'domain' => '', 'secure' => false, 'httponly' => true, 'samesite' => 'Lax']);
-session_start();
 header('Content-Type: application/json');
 require_once '../configure/database.php';
 
-$response = ['status' => 'error', 'message' => 'Lỗi không xác định', 'username' => '', 'email' => '', 'full_name' => '', 'role' => '', 'is_vip' => false, 'vip_expiration_date' => ''];
+$response = ['status' => 'error', 'message' => 'Lỗi không xác định', 'username' => '', 'email' => '', 'full_name' => '', 'role' => '', 'is_vip' => false, 'vip_expiration_date' => '', 'avatar' => ''];
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     try {
@@ -27,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $response['email'] = $info['email'];
             $response['full_name'] = $info['full_name'];
             $response['role'] = $info['role'];
+            $response['avatar'] = $info['avatar'];
             if (isset($_SESSION['is_vip']) && $_SESSION['is_vip'] === true) {
                 $response['is_vip'] = true;
                 $response['vip_expiration_date'] = $info["vip_expiration_date"];

@@ -1,7 +1,6 @@
 <?php
-session_set_cookie_params(['lifetime' => 86400, 'path' => '/', 'domain' => '', 'secure' => false, 'httponly' => true, 'samesite' => 'Lax']);
-session_start();
 header('Content-Type: image/svg+xml');
+require_once '../configure/database.php';
 $chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 $captcha_code = substr(str_shuffle($chars), 0, 5);
 

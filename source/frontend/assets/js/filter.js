@@ -1,4 +1,4 @@
-function filter_logic() {
+function filter() {
     const searchInput = document.getElementById('search-input');
     const searchBtn = document.getElementById('search-btn');         
     const filterBtn = document.getElementById('apply-filter-btn');   
@@ -35,7 +35,7 @@ function filter_logic() {
             }
         });
 
-        if (countLabel) countLabel.innerHTML = `<i class="bi bi-database me-1"></i> Hiển thị ${visibleCount} môn`;
+        if (countLabel) countLabel.innerHTML = `<i class="bi bi-database me-1"></i> Hiển thị ${visibleCount} môn học`;
 
         let noMsg = document.getElementById('no-result-msg');
         if (!hasResult) {
